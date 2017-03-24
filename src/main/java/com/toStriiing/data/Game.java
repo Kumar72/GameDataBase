@@ -5,7 +5,7 @@ public class Game {
 	private int id;
 	private String name, description, genre;
 	private double msrp;
-	private char rating;
+	private String rating;
 	private int vendorId;
 	
 	
@@ -58,10 +58,10 @@ public class Game {
 	public void setMsrp(double msrp) {
 		this.msrp = msrp;
 	}
-	public char getRating() {
+	public String getRating() {
 		return rating;
 	}
-	public void setRating(char rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 	public int getVendorId() {
