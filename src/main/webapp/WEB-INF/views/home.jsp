@@ -2,7 +2,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Game Database</title>
+<title>Vendor Dashboard</title>
 </head>
 <body>
 

@@ -33,5 +33,23 @@ public class GameController {
 		dao.addNewGameToDataBase(game);
 		return mv;
 	}
+	
+	@RequestMapping(value="updateGame.do",
+			method = RequestMethod.POST)
+	public ModelAndView updateGame(Game game) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home");
+		dao.editExistingGame(game);
+		return mv;
+	}
+	
+	@RequestMapping(value="removeGame.do",
+			method = RequestMethod.POST)
+	public ModelAndView removeGame(Game game) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home");
+		dao.removeGameFromDataBase(game);
+		return mv;
+	}
 
 }
