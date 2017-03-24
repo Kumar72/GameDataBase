@@ -2,10 +2,10 @@ GameId, GameName, Description, Genre, MSRP, Rating, VendorID
  1, Mass Effect Andromeda, A futuristic role-playing game set in a new galaxy, Role-Playing, 59.99, M, 1
  2, Overwatch, Team-based multiplayer first-person shooter video game, FPS, 40.00, T, 2
  3, NieR: Automata, Third-person action RPG, RPG, 59.99, M, 3
- 4, NBA 2K17, Newest installment in the NBA 2k franchise, Sports, 41.99, E, 4
- 5, Ghost Recon Wildlands, Ultimate military shooter set in a massive open world setting, FPS, 59.99, M, 5
- 6, Guild Wars 2: Heart of Thorns, Fantasy massive multiplayer online roleplaying game set in Tyria, MMO, 24.97, T, 6
- 7, Sid Meier's Civilization VI, Turn-based strategy game to build your own empire, RTS, 59.99, E, 7
- 8, BioShock, Action game to solve the mystery behind a sinister underwater city, Action, 4.99, M, 8
- 9, The Elder Scrolls V: Skyrim, Open-world epic fantasy RPG, RPG, 19.99, M, 9
- 10, The Forest, Open-world horror survival game, Action, 14.99, U, 10
+ 4, NBA 2K17, Newest installment in the NBA 2k franchise, Sports, 41.99, E, 1
+ 5, Ghost Recon Wildlands, Ultimate military shooter set in a massive open world setting, FPS, 59.99, M, 2
+ 6, Guild Wars 2: Heart of Thorns, Fantasy massive multiplayer online roleplaying game set in Tyria, MMO, 24.97, T, 3
+ 7, Sid Meier's Civilization VI, Turn-based strategy game to build your own empire, RTS, 59.99, E, 1
+ 8, BioShock, Action game to solve the mystery behind a sinister underwater city, Action, 4.99, M, 2
+ 9, The Elder Scrolls V: Skyrim, Open-world epic fantasy RPG, RPG, 19.99, M, 3
+ 10, The Forest, Open-world horror survival game, Action, 14.99, U, 1
