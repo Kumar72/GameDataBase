@@ -6,5 +6,6 @@ public interface GameDAO {
 	public Game editExistingGame(Game game);
 	public void removeGameFromDataBase(Game game);
 	public Game getGameByKeyWord(Game game);
+	public Game filterByKeyWord(Game game);
 		
 }

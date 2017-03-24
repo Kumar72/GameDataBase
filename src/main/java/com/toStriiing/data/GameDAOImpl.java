@@ -35,8 +35,7 @@ public class GameDAOImpl implements GameDAO {
 				double msrp = Double.parseDouble(input[4]);
 				String rating = input[5];
 				int vendorId = Integer.parseInt(input[6]);
-				
-				
+					
 			}
 			
 			
@@ -44,6 +43,9 @@ public class GameDAOImpl implements GameDAO {
 			System.err.println(e);
 		}
 	}
+	
+	
+	
 
 	@Override
 	public void addNewGameToDataBase(Game game) {
@@ -63,8 +65,36 @@ public class GameDAOImpl implements GameDAO {
 	}
 
 	@Override
-	public Game getGameByKeyWord(Game name) {
-		// TODO Auto-generated method stub
+	public Game getGameByKeyWord(Game game) {
+		List<Game> games = new ArrayList<>();
+		String sql = "SELECT id, name, description, genre, msrp, rating, vendorId "
+				+ "WHERE name = ? OR description = ? OR genre = ? OR msrp = ? "
+				+ "OR rating = ?";
+		try{
+			
+		
+		if (game.getName() != null) {
+			
+		}
+		else if (game.getGenre() != null) {
+			
+		}
+		else if(game.getMsrp() != 0) {
+			
+		}
+		else if(game.getRating() != null) {
+			
+		}
+		}catch (Exception e) {
+			System.err.println(e);
+			
+		}
+		return null;
+	}
+
+	@Override
+	public Game filterByKeyWord(Game game) {
+		
 		return null;
 	}
 
