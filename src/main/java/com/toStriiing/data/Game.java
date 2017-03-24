@@ -14,7 +14,7 @@ public class Game {
 		
 	}
 	
-	public Game(int id, String name, String description, String genre, double msrp, char rating, int vendorId) {
+	public Game(int id, String name, String description, String genre, double msrp, String rating, int vendorId) {
 		super();
 		this.id = id;
 		this.name = name;
