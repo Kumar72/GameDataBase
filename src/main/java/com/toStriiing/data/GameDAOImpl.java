@@ -28,48 +28,7 @@ public class GameDAOImpl implements GameDAO {
 	private String user ="root";
 	private String pass ="root";
 	
-	
-	//We are reading the csv and then inserting the data into sql 
-	@PostConstruct
-	public void init() {
-		try (InputStream is = wac.getServletContext().getResourceAsStream(DATA_FILE);
-				BufferedReader buf = new BufferedReader(new InputStreamReader(is));) {
-			String line =buf.readLine();
-			
-			while((line=buf.readLine()) != null) {
-				String[] input = line.split(", ");
-				int id =Integer.parseInt(input[0]);
-				String name = input[1];
-				String description = input[2];
-				String genre = input[3];
-				double msrp = Double.parseDouble(input[4]);
-				String rating = input[5];
-				int vendorId = Integer.parseInt(input[6]);
-				
-				String sql ="INSERT INTO game(name, description, genre, msrp, rating, vendorID) "
-						+ "VALUES (?, ?, ?, ?, ?, ?)";
-					
-					Connection conn = DriverManager.getConnection(url,user,pass);
-					PreparedStatement stmt = conn.prepareStatement(sql);
-						
-						stmt.setString(1, game.getName());
-						stmt.setString(2, game.getDescription());
-						stmt.setString(3, game.getGenre());
-						stmt.setDouble(4, game.getMsrp());
-						stmt.setString(5, game.getRating());
-						stmt.setInt(6, game.getVendorId());
-				
-					int uc = stmt.executeUpdate();
-			}			
-			
-		} catch (Exception e) {
-			System.err.println(e);
-		}
-	}
-	
-	
-	
-
+	 
 	@Override
 	public void addNewGameToDataBase(Game game) {
 
