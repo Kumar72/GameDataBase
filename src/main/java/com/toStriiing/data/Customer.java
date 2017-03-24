@@ -4,19 +4,21 @@ public class Customer {
 
 	private int id;
 	private String firstName, lastName;
-	private int age;
+	private int age, vendorId;
+	
 	
 	
 	//Ctor
 	public Customer() {		
 	}
 
-	public Customer(int id, String firstName, String lastName, int age) {
+	public Customer(int id, String firstName, String lastName, int age, int vendor_id) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
+		this.vendorId = vendor_id;
 	}
 	
 	//************************METHODS BELOW************************//
@@ -46,6 +48,12 @@ public class Customer {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	public int getVendorId() {
+		return vendorId;
+	}
+	public void setVendorId(int vendorId) {
+		this.vendorId = vendorId;
+	}
 	
 	//toString Method
 	@Override
@@ -59,9 +67,12 @@ public class Customer {
 		builder.append(lastName);
 		builder.append(", age=");
 		builder.append(age);
+		builder.append(", vendorId=");
+		builder.append(vendorId);
 		builder.append("]");
 		return builder.toString();
 	}
+
 	
 		
 }

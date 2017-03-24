@@ -6,7 +6,6 @@ public class Game {
 	private String name, description, genre;
 	private double msrp;
 	private String rating;
-	private int vendorId;
 	
 	
 	//Ctor
@@ -14,7 +13,7 @@ public class Game {
 		
 	}
 	
-	public Game(int id, String name, String description, String genre, double msrp, String rating, int vendorId) {
+	public Game(int id, String name, String description, String genre, double msrp, String rating) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -22,7 +21,6 @@ public class Game {
 		this.genre = genre;
 		this.msrp = msrp;
 		this.rating = rating;
-		this.vendorId = vendorId;
 	}
 	
 	//**************************METHODS BELOW******************************//
@@ -64,12 +62,7 @@ public class Game {
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
-	public int getVendorId() {
-		return vendorId;
-	}
-	public void setVendorId(int vendorId) {
-		this.vendorId = vendorId;
-	}
+	
 	
 	//toString for Game
 	@Override
@@ -87,8 +80,6 @@ public class Game {
 		builder.append(msrp);
 		builder.append(", rating=");
 		builder.append(rating);
-		builder.append(", vendorId=");
-		builder.append(vendorId);
 		builder.append("]");
 		return builder.toString();
 	}
