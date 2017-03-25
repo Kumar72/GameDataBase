@@ -30,8 +30,14 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 			
 			while(rs.next()) {
 				invt.setId(rs.getInt(1));
+				//rs.getInt is either 1 or 0
 				//make a list of all the games with the same name! 
+				if(invt.getSold() == 1) {
 				specificGameList.add(invt);
+				}
+				else {
+					continue;
+				}
 			}
 			//check to see if any of the games are sold
 			for (Inventory inventory : specificGameList) {
