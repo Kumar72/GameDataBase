@@ -4,16 +4,19 @@ public class Inventory {
 	
 	private int id, gameId, vendorId;
 	private double price;
-	private int Sold;
+	private boolean sold;
 	
+	public Inventory() {
+		
+	}
 	
-	public Inventory(int id, int gameId, int vendorId, double price, int sold) {
+	public Inventory(int id, int gameId, int vendorId, double price, boolean sold) {
 		super();
 		this.id = id;
 		this.gameId = gameId;
 		this.vendorId = vendorId;
 		this.price = price;
-		Sold = sold;
+		this.sold = sold;
 	}
 
 	
@@ -41,11 +44,11 @@ public class Inventory {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public int getSold() {
-		return Sold;
+	public boolean getSold() {
+		return sold;
 	}
-	public void setSold(int sold) {
-		Sold = sold;
+	public void setSold(boolean sold) {
+		this.sold = sold;
 	}
 
 
@@ -63,7 +66,7 @@ public class Inventory {
 		builder.append(", price=");
 		builder.append(price);
 		builder.append(", Sold=");
-		builder.append(Sold);
+		builder.append(sold);
 		builder.append("]");
 		return builder.toString();
 	}

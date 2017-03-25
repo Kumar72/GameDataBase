@@ -13,17 +13,18 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 
-public class GameDAOImpl implements GameDAO {
-	private static final String DATA_FILE = "/WEB-INF/game.csv";
+public class GameDAOImpl implements GameDAO, CustomerDAO {
 	private List<Game> games = new ArrayList<>();
-	private ServletContext context;
-
-	@Autowired
-	private WebApplicationContext wac;
 
 	private static String url = "jdbc:mysql://localhost:3306/gamedatabase";
 	private String user = "developer";
 	private String pass = "developer";
+
+	@Override
+	public List<Game> listOfGames() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public void addNewGameToDataBase(Game game) {
@@ -38,7 +39,6 @@ public class GameDAOImpl implements GameDAO {
 			stmt.setString(3, game.getGenre());
 			stmt.setDouble(4, game.getMsrp());
 			stmt.setString(5, game.getRating());
-			stmt.setInt(6, game.getVendorId());
 
 			int uc;
 			uc = stmt.executeUpdate();
@@ -53,11 +53,9 @@ public class GameDAOImpl implements GameDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	
-	//NOT DONE
+	// NOT DONE
 	@Override
 	public Game editExistingGame(Game game) {
 		String sql = "UPDATE INTO film (name, description, genre, msrp, rating, " + "vendorId) "
@@ -70,7 +68,6 @@ public class GameDAOImpl implements GameDAO {
 			stmt.setString(3, game.getGenre());
 			stmt.setDouble(4, game.getMsrp());
 			stmt.setString(5, game.getRating());
-			stmt.setInt(6, game.getVendorId());
 
 			int uc;
 			uc = stmt.executeUpdate();
@@ -89,35 +86,17 @@ public class GameDAOImpl implements GameDAO {
 	}
 
 	@Override
-	public void removeGameFromDataBase(Game game) {
-		String sql = "DELETE FROM inventory i "
-				+ "WHERE i.id = ?";	
-		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			
-			
-			
-			int uc;
-			uc = stmt.executeUpdate();
+	public void deleteGameFromDataBase(Game game) {
 
-			if (uc == 1) {
-				System.out.println("Row added");
-			} else {
-				System.out.println("Row not added");
-			}
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// sql to delete a game by inventory id
 
 	}
 
+	// DONE
 	@Override
 	public Game getGameByKeyWord(Game game) {
 		// List<Game> games = new ArrayList<>();
-		String sql = "SELECT id, name, description, genre, msrp, rating, vendorId "
+		String sql = "SELECT id, name, description, genre, msrp, rating "
 				+ "WHERE name = ? OR description = ? OR genre = ? OR msrp = ? " + "OR rating = ?";
 		try (Connection conn = DriverManager.getConnection(url, user, pass);
 				PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -134,7 +113,6 @@ public class GameDAOImpl implements GameDAO {
 					g.setGenre(rs.getString(4));
 					g.setMsrp(rs.getDouble(5));
 					g.setRating(rs.getString(6));
-					g.setVendorId(rs.getInt(7));
 
 					games.add(g);
 				}
@@ -150,7 +128,6 @@ public class GameDAOImpl implements GameDAO {
 					g.setGenre(rs.getString(4));
 					g.setMsrp(rs.getDouble(5));
 					g.setRating(rs.getString(6));
-					g.setVendorId(rs.getInt(7));
 
 					games.add(g);
 				}
@@ -166,7 +143,6 @@ public class GameDAOImpl implements GameDAO {
 					g.setGenre(rs.getString(4));
 					g.setMsrp(rs.getDouble(5));
 					g.setRating(rs.getString(6));
-					g.setVendorId(rs.getInt(7));
 
 					games.add(g);
 				}
@@ -182,7 +158,6 @@ public class GameDAOImpl implements GameDAO {
 					g.setGenre(rs.getString(4));
 					g.setMsrp(rs.getDouble(5));
 					g.setRating(rs.getString(6));
-					g.setVendorId(rs.getInt(7));
 
 					games.add(g);
 				}
@@ -194,11 +169,5 @@ public class GameDAOImpl implements GameDAO {
 		}
 		return null;
 	}
-
-	@Override
-	public Game filterByKeyWord(Game game) {
-
-		return null;
-	}
-
+	
 }

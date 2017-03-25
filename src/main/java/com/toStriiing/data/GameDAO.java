@@ -1,11 +1,13 @@
 package com.toStriiing.data;
 
+import java.util.List;
+
 public interface GameDAO {
 
 	public void addNewGameToDataBase(Game game);
+	public List<Game> listOfGames();
 	public Game editExistingGame(Game game);
-	public void removeGameFromDataBase(Game game);
-	public Game getGameByKeyWord(Game game);
-	public Game filterByKeyWord(Game game);
-		
+	public void deleteGameFromDataBase(Game game);
+	
+	
 }
