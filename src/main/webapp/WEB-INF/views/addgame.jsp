@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action="addGame.do" method="POST">
+	<form action="AddGame.do" method="POST">
 		Add name: <input type="text" name="name" /><br> 
 		Add description: <input type="text" name="description" /><br> 
 		Add genre: <input type="text" name="genre" /><br> 

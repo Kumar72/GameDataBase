@@ -35,12 +35,12 @@
 	<c:forEach items="${gamelist}" var="game">
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<div class="col-sm-4" id="beerinfo">
+					<div class="col-sm-4" id="gameinfo">
 							<strong>Title:</strong> ${game.name}<br> 
 							<strong>Description:</strong> ${game.description}<br> 
 							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP:</strong>${game.msrp}%<br> <br>
-							<strong>Rating:</strong>${game.rating}%<br>
+							<strong>MSRP:</strong>${game.msrp}<br> <br>
+							<strong>Rating:</strong>${game.rating}<br>
 							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
 					</div>
 					<div class="col-sm-2 text-center">
@@ -55,7 +55,7 @@
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
 						<form action="BuyGame.do" method="POST">
-							<button type="submit" name="name" value="${game.name}"								
+							<button type="submit" name="id" value="${inventory}"								
 							class="btn btn-primary">Buy Game</button>
 						</form>
 					</div>

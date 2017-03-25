@@ -44,8 +44,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Change Price:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="msrp"
-									value="${game.msrp}">
+									<input type="text" class="form-control" name="msrp" value="${game.msrp}">
 								</div>
 						</div>
 						<div class="form-group">
