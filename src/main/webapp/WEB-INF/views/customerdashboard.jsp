@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<form action="getGame.do" method="GET">
+<form action="GetGame.do" method="GET">
 		<input type="text" name="name"> <input type=submit
 			value="Get Game Information By Keyword">
 	</form>
@@ -33,15 +33,14 @@
 	</c:if>
 	<hr>
 	<c:forEach items="${gamelist}" var="game">
-	<h1>hello</h1>
 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-4" id="gameinfo">
 							<strong>Title:</strong> ${game.name}<br> 
 							<strong>Description:</strong> ${game.description}<br> 
 							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP:</strong>${game.msrp}<br> <br>
-							<strong>Rating:</strong>${game.rating}<br>
+							<strong>MSRP: </strong> ${game.msrp}<br> <br>
+							<strong>Rating:</strong> ${game.rating}<br>
 							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
 					</div>
 					<div class="col-sm-2 text-center">

@@ -27,16 +27,15 @@ public class GameController {
 			method=RequestMethod.GET)
 	public ModelAndView getGameList() {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("**********" + gdao.listOfGames());
 		mv.addObject("gamelist", gdao.listOfGames());
 		mv.setViewName("customerdashboard");
 		return mv;
 	}
 	
-	@RequestMapping(value="getGame.do")
+	@RequestMapping(value="GetGame.do")
 	public ModelAndView getGameInfoByKeyword(Game game) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
+		mv.setViewName("customerdashboard");
 		cdao.getGameByKeyWord(game);
 		mv.addObject("game", game);
 		return mv;
