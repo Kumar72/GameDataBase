@@ -33,6 +33,7 @@
 	</c:if>
 	<hr>
 	<c:forEach items="${gamelist}" var="game">
+	<h1>hello</h1>
 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-4" id="gameinfo">
