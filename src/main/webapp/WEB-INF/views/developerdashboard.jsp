@@ -60,16 +60,16 @@
 				<div class="row text-center">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
-						<form action="ViewGame.do" method="GET">
-							<button type="submit" name="name" value="${game.name}"
-							class="btn btn-primary">Select Game</button>
+						<form action="EditGame.do" method="POST">
+							<button type="submit" name="id" value="${game.id}"
+							class="btn btn-primary">Edit Game</button>
 						</form>
 					</div>
 					<div class="col-sm-2">
-						<form action="DeleteGame.do" method="POST">
+						<%-- <form action="DeleteGame.do" method="POST">
 							<button type="submit" name="name" value="${game.name}"								
 							class="btn btn-danger">Delete Game</button>
-						</form>
+						</form> --%>
 					</div>
 					<div class="col-sm-4"></div>
 				</div>
