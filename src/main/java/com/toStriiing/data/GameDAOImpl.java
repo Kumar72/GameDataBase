@@ -15,21 +15,34 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class GameDAOImpl implements GameDAO, CustomerDAO {
 	private List<Game> games = new ArrayList<>();
-
 	private static String url = "jdbc:mysql://localhost:3306/gamedatabase";
 	private String user = "developer";
 	private String pass = "developer";
 
+	//DONE
 	@Override
 	public List<Game> listOfGames() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql ="SELECT name, description, genre, msrp, rating "
+				+ "FROM game";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				games.add(new Game(rs.getString(1),rs.getString(2),
+						rs.getString(3),rs.getDouble(4),rs.getString(5)));	
+			}
+		}catch(Exception e) {
+			System.err.println(e);
+		}
+	return games;
 	}
 
 	@Override
 	public void addNewGameToDataBase(Game game) {
 
-		String sql = "INSERT INTO film (name, description, genre, msrp, rating, " + "vendorId) "
+		String sql = "INSERT INTO game (name, description, genre, msrp, rating, " + "vendorId) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
@@ -39,15 +52,9 @@ public class GameDAOImpl implements GameDAO, CustomerDAO {
 			stmt.setString(3, game.getGenre());
 			stmt.setDouble(4, game.getMsrp());
 			stmt.setString(5, game.getRating());
-
-			int uc;
-			uc = stmt.executeUpdate();
-
-			if (uc == 1) {
-				System.out.println("Row added");
-			} else {
-				System.out.println("Row not added");
-			}
+			
+			
+			stmt.executeUpdate();
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
