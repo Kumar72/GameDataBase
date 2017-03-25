@@ -27,8 +27,9 @@ public class GameController {
 			method=RequestMethod.GET)
 	public ModelAndView getGameList() {
 		ModelAndView mv = new ModelAndView();
+		System.out.println("**********" + gdao.listOfGames());
 		mv.addObject("gamelist", gdao.listOfGames());
-		mv.setViewName("gamelist");
+		mv.setViewName("customerdashboard");
 		return mv;
 	}
 	
