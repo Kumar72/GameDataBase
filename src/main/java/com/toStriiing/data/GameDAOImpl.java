@@ -20,7 +20,7 @@ public class GameDAOImpl implements GameDAO {
 	
 	/*------------------METHODS BELOW----------------------*/
 
-	//DONE - GameDAO (1/4)
+	//DONE - GameDAO (1/4) DEV
 	@Override
 	public List<Game> listOfGames() {
 		List<Game> games = new ArrayList<>();
@@ -35,13 +35,16 @@ public class GameDAOImpl implements GameDAO {
 				games.add(new Game(rs.getString(1),rs.getString(2),
 						rs.getString(3),rs.getDouble(4),rs.getString(5)));	
 			}
+		rs.close();
+		stmt.close();
+		conn.close();
 		}catch(Exception e) {
 			System.err.println(e);
 		}
 	return games;
 	}
 
-	//DONE - GameDAO (2/4)
+	//DONE - GameDAO (2/4) DEV
 	@Override
 	public void addNewGameToDataBase(Game game) {
 
@@ -64,7 +67,7 @@ public class GameDAOImpl implements GameDAO {
 		}
 	}
 
-	//DONE - GameDAO (3/4)
+	//DONE - GameDAO (3/4) DEV
 	@Override
 	public Game editExistingGame(int id) {
 		Game game = new Game();
@@ -89,7 +92,7 @@ public class GameDAOImpl implements GameDAO {
 		return game;
 	}
 
-	//DONE - GameDAO (4/4)
+	//DONE - GameDAO (4/4) DEV
 	@Override
 	public void deleteGame(int id) {
 		Game game = new Game();

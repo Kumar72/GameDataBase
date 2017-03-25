@@ -16,9 +16,44 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 	// !!!! - InventoryDAO (1/3)
 	@Override 
 	public void sellGame(Game game) {
-		//Mark a game sold (boolean) 
-		// *** ADD a Method to display sold or Available games ***
-
+		List<Inventory> specificGameList = new ArrayList<>();
+		String sql = "SELECT i.id FROM inventory i "
+				+ "JOIN game g ON i.game_id = g.id "
+				+ "WHERE g.id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, game.getId());
+			ResultSet rs = stmt.executeQuery();
+			
+			Inventory invt = new Inventory();
+			
+			while(rs.next()) {
+				invt.setId(rs.getInt(1));
+				//make a list of all the games with the same name! 
+				specificGameList.add(invt);
+			}
+			//check to see if any of the games are sold
+			for (Inventory inventory : specificGameList) {
+				//sold : true = SOLD     false = AVAILABLE 
+				if(inventory.getSold()) {
+					continue;
+				}
+				else {
+					//Update DATABASE
+					updateByInventoryId(inventory);
+					//UPDATING INFO FOR CLIENT
+					inventory.setSold(true);
+					break;
+				}
+			}
+			
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	// !!!! - InventoryDAO (2/3)

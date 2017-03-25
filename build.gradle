@@ -10,6 +10,12 @@ description = """GameDeveloperDataBase"""
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+eclipse {
+    project  {
+        natures 'org.springframework.ide.eclipse.core.springnature', 
+                'org.eclipse.buildship.core.gradleprojectnature'
+    }
+}
 
 
 repositories {
