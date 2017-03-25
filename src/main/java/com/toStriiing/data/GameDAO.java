@@ -4,10 +4,11 @@ import java.util.List;
 
 public interface GameDAO {
 
-	public void addNewGameToDataBase(Game game);
 	public List<Game> listOfGames();
-	public Game editExistingGame(Game game);
-	public void deleteGameFromDataBase(Game game);
+	public void addNewGameToDataBase(Game game);
+	public Game editExistingGame(int id);
+	public void deleteGameFromDataBase(int id);
+
 	
 	
 }

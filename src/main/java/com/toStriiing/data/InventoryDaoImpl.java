@@ -11,13 +11,15 @@ public class InventoryDaoImpl implements InventoryDAO {
 	private String user = "developer";
 	private String pass = "developer";
 
-	
-	@Override
+	// !!!! - InventoryDAO (1/2)
+	@Override 
 	public void sellGame(Game game) {
-		// TODO Auto-generated method stub
+		//Mark a game sold (boolean) 
+		// *** ADD a Method to display sold or Available games ***
 
 	}
-
+	
+	// !!!! - InventoryDAO (2/2)
 	@Override
 	public void updateByInventoryId(Inventory inventory) {
 		// delete one of the games from the inventory of diffenrent games
