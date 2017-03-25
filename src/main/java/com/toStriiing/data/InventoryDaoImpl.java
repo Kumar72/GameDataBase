@@ -11,7 +11,7 @@ public class InventoryDaoImpl implements InventoryDAO {
 	private String user = "developer";
 	private String pass = "developer";
 
-	// !!!! - InventoryDAO (1/2)
+	// !!!! - InventoryDAO (1/3)
 	@Override 
 	public void sellGame(Game game) {
 		//Mark a game sold (boolean) 
@@ -19,7 +19,7 @@ public class InventoryDaoImpl implements InventoryDAO {
 
 	}
 	
-	// !!!! - InventoryDAO (2/2)
+	// !!!! - InventoryDAO (2/3)
 	@Override
 	public void updateByInventoryId(Inventory inventory) {
 		// delete one of the games from the inventory of diffenrent games
@@ -44,6 +44,24 @@ public class InventoryDaoImpl implements InventoryDAO {
 				stmt.close();
 			}
 
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//DONE InventoryDAO (3/3)
+	@Override
+	public void deleteGameFromInventory(int inventoryId) {
+		// SQL to delete a game by inventory id
+		Game game = new Game();
+		String sql = "Delete FROM inventory WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, inventoryId);
+			stmt.executeUpdate();
+			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

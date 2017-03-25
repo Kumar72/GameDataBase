@@ -7,7 +7,8 @@ public interface GameDAO {
 	public List<Game> listOfGames();
 	public void addNewGameToDataBase(Game game);
 	public Game editExistingGame(int id);
-	public void deleteGameFromDataBase(int id);
+	public void deleteGame(int id);
+	
 
 	
 	

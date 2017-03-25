@@ -91,20 +91,21 @@ public class GameDAOImpl implements GameDAO, CustomerDAO {
 
 	//DONE - GameDAO (4/4)
 	@Override
-	public void deleteGameFromDataBase(int inventoryId) {
-		// SQL to delete a game by inventory id
+	public void deleteGame(int id) {
 		Game game = new Game();
-		String sql = "Delete FROM inventory WHERE id = ?";
+		String sql = "Delete FROM game WHERE id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, inventoryId);
+			stmt.setInt(1, id);
 			stmt.executeUpdate();
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 	// DONE - CustomerDAOImpl (1/1)
@@ -183,5 +184,7 @@ public class GameDAOImpl implements GameDAO, CustomerDAO {
 		}
 		return games;
 	}
+
+	
 	
 }
