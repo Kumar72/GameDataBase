@@ -3,10 +3,12 @@ package com.toStriiing.data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryDaoImpl implements InventoryDAO {
+public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 	private static String url = "jdbc:mysql://localhost:3306/gamedatabase";
 	private String user = "developer";
 	private String pass = "developer";
@@ -52,10 +54,10 @@ public class InventoryDaoImpl implements InventoryDAO {
 	
 	//DONE InventoryDAO (3/3)
 	@Override
-	public void deleteGameFromInventory(int inventoryId) {
+	public void sellGameFromInventory(int inventoryId) {
+		// Where do we match the game to the inventoryId
 		// SQL to delete a game by inventory id
-		Game game = new Game();
-		String sql = "Delete FROM inventory WHERE id = ?";
+		String sql = "UPDATE inventory SET sold=0 WHERE id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -66,5 +68,82 @@ public class InventoryDaoImpl implements InventoryDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	// DONE - CustomerDAOImpl (1/1)
+	public List<Game> getGameByKeyWord(Game game) {
+		 List<Game> games = new ArrayList<>();
+		Game g = new Game();
+		String sql = "SELECT id, name, description, genre, msrp, rating "
+				+ "WHERE name = ? OR description = ? OR genre = ? OR msrp = ? " + "OR rating = ?";
+		try (Connection conn = DriverManager.getConnection(url, user, pass);
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+			if (game.getName() != null) {
+				stmt.setString(1, "%" + game.getName() + "%");
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
+
+					games.add(g);
+				}
+
+			} else if (game.getGenre() != null) {
+				stmt.setString(1, "%" + game.getGenre() + "%");
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
+
+					games.add(g);
+				}
+
+			} else if (game.getMsrp() != 0) {
+				stmt.setString(1, "%" + game.getMsrp() + "%");
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
+
+					games.add(g);
+				}
+
+			} else if (game.getRating() != null) {
+				stmt.setString(1, "%" + game.getRating() + "%");
+				ResultSet rs = stmt.executeQuery();
+
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
+
+					games.add(g);
+				}
+			} // add else if (game.getDesc()) {}
+
+		} catch (Exception e) {
+			System.err.println(e);
+
+		}
+		return games;
 	}
 }
