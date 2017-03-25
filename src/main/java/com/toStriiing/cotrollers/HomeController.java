@@ -1,22 +1,23 @@
 package com.toStriiing.cotrollers;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.toStriiing.data.Game;
+import com.toStriiing.data.GameDAO;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	
+	private GameDAO gamedao;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -24,7 +25,9 @@ public class HomeController {
 	public ModelAndView customerPage() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("customerdashboard");
-		
+		List<Game> games = gamedao.listOfGames();
+		System.out.println(games);
+		mv.addObject("gamelist", games);
 		return mv;
 	}
 	
