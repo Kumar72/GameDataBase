@@ -56,10 +56,11 @@ public class GameController {
 	// NEED TO PASS OBJECT
 	@RequestMapping(value="EditGame.do",
 			method = RequestMethod.POST)
-	public ModelAndView editGame(@RequestParam("id")int id) {
-		gdao.editExistingGame(id);
+	public ModelAndView editGame(Game game) {
+//		System.out.println(id);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("developerdashboard");
+		gdao.editExistingGame(game);
 		mv.addObject("gamelist", gdao.listOfGames());
 		return mv;
 	}
@@ -69,7 +70,7 @@ public class GameController {
 	public ModelAndView removeOneGameFromDatabase(@RequestParam("id") Inventory inventory) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("customerdashboard");
-		idao.updateByInventoryId(inventory);
+		idao.markGameAsSold(inventory);
 //		mv.addObject("response", response); // need function in method
 		return mv;
 	}

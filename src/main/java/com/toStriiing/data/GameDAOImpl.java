@@ -54,6 +54,7 @@ public class GameDAOImpl implements GameDAO {
 		}
 	return games;
 	}
+	
 	@Override
 	public Game getGameById(int id ) {
 		String sql ="SELECT * "
@@ -104,10 +105,12 @@ public class GameDAOImpl implements GameDAO {
 
 	//DONE - GameDAO (3/4) DEV
 	@Override
-	public Game editExistingGame(int id) {
-		Game game = new Game();
+	public void editExistingGame(Game game) {
+		System.out.println("###############################" + game);
+		System.out.println(game);
 		String sql = "UPDATE game "
-				+ "SET name= '?', description= '?', genre= '?', msrp= ?, rating= '?', vendorId = ?) "
+				+ "SET name = ?, description = ?, genre = ?, "
+				+ "msrp = ?, rating = ? "
 				+ "WHERE id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
@@ -117,14 +120,17 @@ public class GameDAOImpl implements GameDAO {
 			stmt.setString(3, game.getGenre());
 			stmt.setDouble(4, game.getMsrp());
 			stmt.setString(5, game.getRating());
+			stmt.setInt(6, game.getId());
 
+			
+			System.out.println(stmt);
 			stmt.executeUpdate();
+			System.out.println(stmt);
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return game;
 	}
 
 	//DONE - GameDAO (4/4) DEV

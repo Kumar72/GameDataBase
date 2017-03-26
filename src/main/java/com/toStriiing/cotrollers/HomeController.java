@@ -24,7 +24,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value="customer.do", method=RequestMethod.GET)
 	public ModelAndView customerPage() {
-		System.out.println("***************************************************************");
+//		System.out.println("***************************************************************");
 		ModelAndView mv = new ModelAndView();
 		List<Game> games = gamedao.listOfGames();
 		System.out.println(games);
@@ -35,7 +35,7 @@ public class HomeController {
 	
 	@RequestMapping(value="vendor.do", method=RequestMethod.GET)
 	public ModelAndView vendorPage() {
-		System.out.println("***************************************************************");
+//		System.out.println("***************************************************************");
 		List<Game> games = gamedao.listOfGames();
 		System.out.println(games);
 		ModelAndView mv = new ModelAndView();
@@ -46,7 +46,7 @@ public class HomeController {
 	
 	@RequestMapping(value="developer.do", method=RequestMethod.GET)
 	public ModelAndView developerPage() {
-		System.out.println("***************************************************************");
+//		System.out.println("***************************************************************");
 		ModelAndView mv = new ModelAndView();
 		List<Game> games = gamedao.listOfGames();
 		System.out.println(games);
