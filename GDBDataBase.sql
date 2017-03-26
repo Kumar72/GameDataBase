@@ -150,10 +150,21 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `GameDataBase`;
-INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (1, 1, 1, 50, 1);
-INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (2, 2, 1, 50, 1);
-INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (3, 3, 1, 50, 1);
-INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (4, 1, 1, 50, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (1, 1, 1, 60.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (2, 2, 1, 38.97, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (3, 3, 1, 60.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (4, 1, 1, 60.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (5, 4, 2, 39.99, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (6, 5, 2, 57.68, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (7, 4, 2, 39.99, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (8, 3, 3, 58.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (9, 1, 3, 58.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (10, 6, 3, 21.99, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (11, 8, 3, 5.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (12, 7, 1, 60.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (13, 10, 3, 10.00, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (14, 9, 2, 7.99, 1);
+INSERT INTO `inventory` (`id`, `game_id`, `vendor_id`, `price`, `sold`) VALUES (15, 7, 2, 57.68, 1);
 
 COMMIT;
 
