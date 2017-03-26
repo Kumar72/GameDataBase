@@ -13,7 +13,7 @@
 		Add name: <input type="text" name="name" /><br> 
 		Add description: <input type="text" name="description" /><br> 
 		Add genre: <input type="text" name="genre" /><br> 
-		Add MSRP: <input type="text" name="MSRP" /><br> 
+		Add MSRP: <input type="text" name="msrp" /><br> 
 		Add rating: <select name="rating"> 
 			<option value="C">1. Early Childhood</option>
 			<option value="E">2. Everyone</option>

@@ -54,6 +54,12 @@ public class HomeController {
 		return mv;
 	}
 	
+	@RequestMapping(value="addform.do", method=RequestMethod.POST)
+	public ModelAndView addForm() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("addgame");
+		return mv;
+	}
 	
 	
 }

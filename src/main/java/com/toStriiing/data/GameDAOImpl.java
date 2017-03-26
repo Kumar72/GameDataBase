@@ -59,8 +59,8 @@ public class GameDAOImpl implements GameDAO {
 	@Override
 	public void addNewGameToDataBase(Game game) {
 
-		String sql = "INSERT INTO game (name, description, genre, msrp, rating, vendorId) "
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO game (name, description, genre, msrp, rating) "
+				+ "VALUES (?, ?, ?, ?, ?)";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
