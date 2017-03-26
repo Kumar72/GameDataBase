@@ -23,13 +23,14 @@
 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-4" id="gameinfo">
-							<strong>Title:</strong> ${inventory.id}<br> 
-							<strong>Description:</strong> ${inventory.game}<br> 
-							<strong>Genre:</strong> ${inventory.vendorId}<br> 
-							<strong>MSRP:</strong>${inventory.price}<br> <br>
-							<strong>Rating:</strong>${inventory.sold}<br>
+							<strong>Name:</strong> ${inventory.game.name}<br> 
+							<strong>Description:</strong> ${inventory.game.description}<br> 
+							<strong>Genre:</strong> ${inventory.game.genre}<br> 
+							<strong>MSRP:</strong> ${inventory.price}<br> 
+							<strong>Rating:</strong> ${inventory.game.rating}<br> 
+							<strong>Vendor Name:</strong> ${inventory.vendorId}<br> 
+							<strong>Status:</strong>${inventory.sold}<br>
 							<strong>Quantity:</strong>${inventory.quantity}<br>
-							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
 					</div>
 					<div class="col-sm-2 text-center">
 					<!-- placeholder for game photo -->

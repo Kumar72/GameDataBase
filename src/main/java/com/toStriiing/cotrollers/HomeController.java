@@ -43,7 +43,7 @@ public class HomeController {
 		List<Inventory> inv = idao.listOfGames();
 		System.out.println(inv);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("gamelist", inv);
+		mv.addObject("invlist", inv);
 		mv.setViewName("vendordashboard");
 		return mv;
 	}
