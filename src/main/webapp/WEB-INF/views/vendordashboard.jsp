@@ -43,10 +43,18 @@
 				<div class="row text-center">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label class="control-label col-sm-2">Change Price:</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" name="msrp" value="${game.msrp}">
+								</div>
+						</div>
+						 --%>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Change Price:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="msrp"
+									value="${game.msrp}">
 								</div>
 						</div>
 						<div class="form-group">
