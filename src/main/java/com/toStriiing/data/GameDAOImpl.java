@@ -106,12 +106,13 @@ public class GameDAOImpl implements GameDAO {
 	//DONE - GameDAO (4/4) DEV
 	@Override
 	public void deleteGame(int id) {
-		Game game = new Game();
+		InventoryDaoImpl iDIE = new InventoryDaoImpl();
 		String sql = "Delete FROM game WHERE id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
+			iDIE.removeAllGameFromInventory(id);
 			stmt.executeUpdate();
 			stmt.close();
 			conn.close();
