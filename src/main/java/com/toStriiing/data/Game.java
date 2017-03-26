@@ -12,14 +12,14 @@ public class Game {
 	public Game() {
 		
 	}
-	public Game (String name, String description, String genre, double msrp, String rating) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.genre = genre;
-		this.msrp = msrp;
-		this.rating = rating;
-	}
+//	public Game (String name, String description, String genre, double msrp, String rating) {
+//		super();
+//		this.name = name;
+//		this.description = description;
+//		this.genre = genre;
+//		this.msrp = msrp;
+//		this.rating = rating;
+//	}
 	
 	public Game(int id, String name, String description, String genre, double msrp, String rating) {
 		super();

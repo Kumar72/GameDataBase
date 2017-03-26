@@ -19,17 +19,18 @@
 </head>
 <body>
 
-<form action="getGame.do" method="GET">
-		<input type="text" name="name"> <input type=submit
+<form action="GetGameByKeyword.do" method="GET">
+		<input type="text" name="keyword"> <input type=submit
 			value="Get Game Information By Keyword">
 	</form>
-	<c:if test="${! empty game}">
-		Name: <strong>${game.name}</strong><br>
-		Description: <strong>${game.description}</strong><br>
-		Genre: <strong>${game.genre}</strong><br>
-		MSRP: <strong>${game.msrp}</strong><br>
-		Rating: <strong>${game.rating}</strong>
-		<br>
+	<c:if test="${! empty gamesdata}">
+		<c:forEach var="game" items="${gamesData}">
+			Name: <strong>${game.name}</strong><br>
+			Description: <strong>${game.description}</strong><br>
+			Genre: <strong>${game.genre}</strong><br>
+			MSRP: <strong>${game.msrp}</strong><br>
+			Rating: <strong>${game.rating}</strong>
+		</c:forEach>
 	</c:if>
 	<hr>
 	<c:forEach items="${gamelist}" var="game">
@@ -39,8 +40,8 @@
 							<strong>Title:</strong> ${game.name}<br> 
 							<strong>Description:</strong> ${game.description}<br> 
 							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP:</strong>${game.msrp}<br> <br>
-							<strong>Rating:</strong>${game.rating}<br>
+							<strong>MSRP: </strong> ${game.msrp}<br> <br>
+							<strong>Rating:</strong> ${game.rating}<br>
 							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
 					</div>
 					<div class="col-sm-2 text-center">

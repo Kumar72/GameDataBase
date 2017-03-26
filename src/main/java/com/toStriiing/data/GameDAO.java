@@ -9,7 +9,4 @@ public interface GameDAO {
 	public Game editExistingGame(int id);
 	public void deleteGame(int id);
 	
-
-	
-	
 }

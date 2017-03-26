@@ -38,15 +38,15 @@
 			</div>
 			<div class="col-sm-3"></div>
 		</div>
-			<c:forEach items="${game}" var="game">
+			<c:forEach items="${gamelist}" var="game">
 				<div class="row">
 					<div class="col-sm-3"></div>
 					<div class="col-sm-4" id="gameinfo">
 							<strong>Title:</strong> ${game.name}<br> 
 							<strong>Description:</strong> ${game.description}<br> 
 							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP:</strong>${game.msrp}%<br> <br>
-							<strong>Rating:</strong>${game.rating}%<br>
+							<strong>MSRP: </strong> ${game.msrp}<br> <br>
+							<strong>Rating:</strong> ${game.rating}<br>
 							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
 					</div>
 					<div class="col-sm-2 text-center">
@@ -66,10 +66,10 @@
 						</form>
 					</div>
 					<div class="col-sm-2">
-						<%-- <form action="DeleteGame.do" method="POST">
-							<button type="submit" name="name" value="${game.name}"								
+						<form action="DeleteGame.do" method="POST">
+							<button type="submit" name="id" value="${game.id}"								
 							class="btn btn-danger">Delete Game</button>
-						</form> --%>
+						</form>
 					</div>
 					<div class="col-sm-4"></div>
 				</div>
