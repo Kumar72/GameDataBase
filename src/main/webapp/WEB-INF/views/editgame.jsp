@@ -66,6 +66,7 @@
 						    <option value="A">5. Adult</option>
 			  			</select><br>
 			</div>
+			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" value="Edit Game" class="btn btn-default">Submit Changes</button>
