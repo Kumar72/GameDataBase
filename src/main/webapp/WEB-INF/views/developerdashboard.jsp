@@ -60,7 +60,7 @@
 				<div class="row text-center">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
-						<form action="EditGame.do" method="POST">
+						<form action="editform.do" method="POST">
 							<button type="submit" name="id" value="${game.id}"
 							class="btn btn-primary">Edit Game</button>
 						</form>

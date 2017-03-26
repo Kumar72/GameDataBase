@@ -8,5 +8,6 @@ public interface GameDAO {
 	public void addNewGameToDataBase(Game game);
 	public Game editExistingGame(int id);
 	public void deleteGame(int id);
+	Game getGameById(int id);
 	
 }

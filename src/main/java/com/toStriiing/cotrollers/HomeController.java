@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.toStriiing.data.Game;
@@ -61,5 +62,13 @@ public class HomeController {
 		return mv;
 	}
 	
+	@RequestMapping(value="editform.do", method=RequestMethod.POST)
+	public ModelAndView editForm(@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView();
+		Game g = gamedao.getGameById(id);
+		mv.setViewName("editgame");
+		mv.addObject("game", g);
+		return mv;
+	}
 	
 }
