@@ -15,121 +15,95 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 
 	// !!!! - InventoryDAO (1/5)
 	@Override
-	public void sellGame(Game game) {
-		List<Inventory> specificGameList = new ArrayList<>();
-		String sql = "SELECT i.id FROM inventory i " + "JOIN game g ON i.game_id = g.id " + "WHERE g.id = ?";
-		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, game.getId());
-			ResultSet rs = stmt.executeQuery();
-
-			Inventory invt = new Inventory();
-
-			while (rs.next()) {
-				invt.setId(rs.getInt(1));
-				// rs.getInt is either 1 or 0
-				// make a list of all the games with the same name!
-				// if(invt.getSold() == 1) {
-				// specificGameList.add(invt);
-				// }
-				// else {
-				// continue;
-				// }
-			}
-			// check to see if any of the games are sold
-			for (Inventory inventory : specificGameList) {
-				// sold : true = SOLD false = AVAILABLE
-				if (inventory.getSold()) {
-					continue;
-				} else {
-					// Update DATABASE
-					updateByInventoryId(inventory);
-					// UPDATING INFO FOR CLIENT
-					inventory.setSold(true);
-					break;
-				}
-			}
-
-			rs.close();
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+    public void sellGameFromInventory(int id) {
+        // Where do we match the game to the inventoryId
+        // SQL to delete a game by inventory id
+        String sql = "UPDATE inventory SET sold = 0 WHERE id = ?";
+        try {
+            Connection conn = DriverManager.getConnection(url, user, pass);
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+	//HI 
+	@Override
+    public void buyOneGame(int id) {
+        sellGameFromInventory(id);
+    }
 
 	// !!!! - InventoryDAO (2/5)
-	@Override
-	public void updateByInventoryId(Inventory inventory) {
-		// delete one of the games from the inventory of diffenrent games
-		inventory.setGameId(inventory.getId());
-
-		// sold = 1 (AVALABLE) sold = 0 (SOLD)
-		String sql = "UPDATE inventory SET sold=0 WHERE id = ?";
-		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, inventory.getId());
-
-			// I want to check if game exits in the inventory, if it does
-			// mark one of them as sold
-			if (inventory.getSold()) {
-				System.out.println("SOLD OUT");
-
-			} else {
-				inventory.setSold(true);
-				int uc;
-				uc = stmt.executeUpdate();
-				stmt.close();
-			}
-
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Override
+//	public void markGameAsSold(Inventory inventory) {
+//		// delete one of the games from the inventory of diffenrent games
+//		inventory.setGame(inventory.getId());
+//
+//		// sold = 1 (AVALABLE) sold = 0 (SOLD)
+//		String sql = "UPDATE inventory SET sold=0 WHERE id = ?";
+//		try {
+//			Connection conn = DriverManager.getConnection(url, user, pass);
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//			stmt.setInt(1, inventory.getId());
+//
+//			// I want to check if game exits in the inventory, if it does
+//			// mark one of them as sold
+//			if (inventory.getSold()) {
+//				System.out.println("SOLD OUT");
+//
+//			} else {
+//				inventory.setSold(true);
+//				int uc;
+//				uc = stmt.executeUpdate();
+//				stmt.close();
+//			}
+//
+//			conn.close();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	// DONE InventoryDAO (3/5)
+
+	// DONE - InventoryDAO (4/5)
+//	@Override
+//	public void inventoryTotalOfGame(Inventory inventory) {
+//		String sql = "SELECT COUNT(game_id) FROM inventory WHERE game_id = ?";
+//		try {
+//			Connection conn = DriverManager.getConnection(url, user, pass);
+//			PreparedStatement stmt = conn.prepareStatement(sql);
+//			ResultSet rs = stmt.executeQuery();
+//			stmt.setInt(1, inventory.getGameId());
+//
+//			if (rs.next()) {
+//				inventory.setQuantity(rs.getInt(1));
+//			}
+//			rs.close();
+//			stmt.close();
+//			conn.close();
+//		} catch (Exception e) {
+//			System.err.println(e);
+//		}
+//	}
+
+	// DONE - InventoryDAOImpl(5/5)
 	@Override
-	public void sellGameFromInventory(int inventoryId) {
-		// Where do we match the game to the inventoryId
-		// SQL to delete a game by inventory id
-		String sql = "UPDATE inventory SET sold=0 WHERE id = ?";
+	public void removeAllGameFromInventory(int id) {
+		String sql = "Delete FROM inventory WHERE game_id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, inventoryId);
+			stmt.setInt(1, id);
 			stmt.executeUpdate();
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	// DONE - InventoryDAO (4/5)
-	@Override
-	public List<Game> listOfGames() {
-		List<Game> games = new ArrayList<>();
-		String sql = "SELECT * " + "FROM game";
-		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				games.add(new Game(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
-						rs.getString(6)));
-			}
-			rs.close();
-			stmt.close();
-			conn.close();
-		} catch (Exception e) {
-			System.out.println("errrrrrrrrrorororro");
-			System.err.println(e);
-		}
-		return games;
 	}
 
 	// DONE - CustomerDAOImpl (1/1)
@@ -209,19 +183,66 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 		return games;
 	}
 
-	// !!!! - InventoryDAOImpl(4/5)
 	@Override
-	public void removeAllGameFromInventory(int id) {
-		String sql = "Delete FROM inventory WHERE game_id = ?";
+	public List<Inventory> listOfGames() {
+		
+		List<Inventory> gameInventory = new ArrayList<>();
+		String sql = "SELECT * FROM inventory GROUP BY game_id";
+
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, id);
-			stmt.executeUpdate();
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Inventory i = new Inventory();
+				i.setId(rs.getInt(1));	//inventory id.
+				if (rs.getInt(2) != 0) { 	//game
+					GameDAO gdao = new GameDAOImpl();
+					i.setGame(gdao.getGameById(rs.getInt(2)));
+				}
+				i.setVendorId(rs.getInt(3));	//vendorId
+				i.setPrice(rs.getDouble(4));	//price
+				if (rs.getInt(5) == 1)			//sold
+					i.setSold(true);
+				else
+					i.setSold(false);
+				
+				int quantity = totalNumberOfGamesInInventory(rs.getInt(2));
+				i.setQuantity(quantity);
+				gameInventory.add(i);
+			}
+			rs.close();
 			stmt.close();
 			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			System.err.println(e);
 		}
+		return gameInventory;
 	}
+
+	public int totalNumberOfGamesInInventory(int gameid) {
+		int count= 0; 
+		String sql = "SELECT COUNT(*) " + 
+				"FROM Inventory "
+				+ "Where game_id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, gameid);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+				System.out.println(count);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		System.out.println();
+		return count;
+	}
+
 }

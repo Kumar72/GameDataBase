@@ -56,15 +56,15 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2">Edit rating</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="rating"
-						value="${game.rating}">
 				<select name="rating">
+							
 						    <option value="C">1. Early Childhood</option>
 						    <option value="E">2. Everyone</option>
 						    <option value="T">3. Teen</option>
 						    <option value="M">4. Mature</option>
 						    <option value="A">5. Adult</option>
 			  			</select><br>
+			</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">

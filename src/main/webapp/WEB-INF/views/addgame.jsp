@@ -10,10 +10,12 @@
 <body>
 
 	<form action="AddGame.do" method="POST">
+		<fieldset>
+			<legend>Create A New Game</legend>
 		Add name: <input type="text" name="name" /><br> 
-		Add description: <input type="text" name="description" /><br> 
+		Description: <textarea name="description" row="7" cols="50"></textarea><br>
 		Add genre: <input type="text" name="genre" /><br> 
-		Add MSRP: <input type="text" name="msrp" /><br> 
+		Add MSRP: <input type="number" name="msrp" min="0.00"  max="99.99" step="10.00"/><br> 
 		Add rating: <select name="rating"> 
 			<option value="C">1. Early Childhood</option>
 			<option value="E">2. Everyone</option>
@@ -23,6 +25,7 @@
 		</select><br>
 		<button type="submit" value="Add Film" class="btn btn-default">Submit
 			new game</button>
+		</fieldset>
 	</form>
 
 </body>

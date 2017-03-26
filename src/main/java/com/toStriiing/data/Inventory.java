@@ -2,21 +2,24 @@ package com.toStriiing.data;
 
 public class Inventory {
 	
-	private int id, gameId, vendorId;
+	private int id;
+	private Game game;
+	private int vendorId;
 	private double price;
 	private boolean sold;
+	private int quantity;
 	
-	public Inventory() {
-		
+	public Inventory() {	
 	}
 	
-	public Inventory(int id, int gameId, int vendorId, double price, boolean sold) {
+	public Inventory(int id, Game game, int vendorId, double price, boolean sold, int quantity) {
 		super();
 		this.id = id;
-		this.gameId = gameId;
+		this.game = game;
 		this.vendorId = vendorId;
 		this.price = price;
 		this.sold = sold;
+		this.quantity = quantity;
 	}
 
 	
@@ -26,11 +29,11 @@ public class Inventory {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getGameId() {
-		return gameId;
+	public Game getGame() {
+		return game;
 	}
-	public void setGameId(int gameId) {
-		this.gameId = gameId;
+	public void setGame(Game game) {
+		this.game = game;
 	}
 	public int getVendorId() {
 		return vendorId;
@@ -51,22 +54,31 @@ public class Inventory {
 		this.sold = sold;
 	}
 
+	
+	public int getQuantity() {
+		return quantity;
+	}
 
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	
-	
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Inventory [id=");
 		builder.append(id);
-		builder.append(", gameId=");
-		builder.append(gameId);
+		builder.append(", game=");
+		builder.append(game);
 		builder.append(", vendorId=");
 		builder.append(vendorId);
 		builder.append(", price=");
 		builder.append(price);
 		builder.append(", Sold=");
 		builder.append(sold);
+		builder.append(", Quantity=");
+		builder.append(quantity);
 		builder.append("]");
 		return builder.toString();
 	}

@@ -24,66 +24,105 @@ public class GameController {
 	private CustomerDAO cdao = new InventoryDaoImpl();
 	private InventoryDAO idao = new InventoryDaoImpl();
 	
+	/*############## DEVELOPER CONTROLLERS BELOW ##############*/
 	
-	@RequestMapping(path="GetGameList.do", 
-			method=RequestMethod.GET)
-	public ModelAndView getGameList() {
-		System.out.println("in getgamelist.do");
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("gamelist", idao.listOfGames());
-		mv.setViewName("developerdashboard");
-		return mv;
-	}
-	
-	@RequestMapping(value="GetGameByKeyword.do")
-	public ModelAndView getGameInfoByKeyword(Game game) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("customerdashboard");
-		List<Game> gamesdata = cdao.getGameByKeyWord(game);
-		mv.addObject("game", gamesdata);
-		return mv;
-	}
-	
+	//DEV -Create
 	@RequestMapping(value="AddGame.do",
 			method = RequestMethod.POST)
 	public ModelAndView addNewGame(Game game) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("developerdashboard");
+//		List<Game> games = gdao.listOfGames();
+		//having problems here to view the list! 
 		gdao.addNewGameToDataBase(game);
-		mv.addObject("gamelist", idao.listOfGames());
+		mv.addObject("gamelist", gdao.listOfGames());
+		mv.setViewName("developerdashboard");
 		return mv;
 	}
 	
-	// NEED TO PASS OBJECT
+	//DEV -Read
+	@RequestMapping(path="GetGameList.do", 
+			method=RequestMethod.GET)
+	public ModelAndView getGameList() {
+//		System.out.println("in getgamelist.do");  //DEBUG
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("gamelist", gdao.listOfGames());
+		mv.setViewName("developerdashboard");
+		return mv;
+	}
+	
+	//DEV -Update
 	@RequestMapping(value="EditGame.do",
 			method = RequestMethod.POST)
-	public ModelAndView editGame(@RequestParam("id")int id) {
+	public ModelAndView editGame(Game game) {
+//		System.out.println(id);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("developerdashboard");
-		gdao.editExistingGame(id);
+		gdao.editExistingGame(game);
 		mv.addObject("gamelist", gdao.listOfGames());
 		return mv;
 	}
 	
-	@RequestMapping(value="BuyGame.do",
-			method = RequestMethod.POST)
-	public ModelAndView removeOneGameFromDatabase(@RequestParam("id") Inventory inventory) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("customerdashboard");
-		idao.updateByInventoryId(inventory);
-//		mv.addObject("response", response); // need function in method
-		return mv;
-	}
-	
+	//DEV -Delete
 	@RequestMapping(value="DeleteGame.do",
 			method = RequestMethod.POST)
 	public ModelAndView removeGameFromDatabase(@RequestParam("id") int id) {
 		gdao.deleteGame(id);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("developerdashboard");
-		mv.addObject("gamelist", idao.listOfGames());
+		mv.addObject("gamelist", gdao.listOfGames());
 		return mv;
 	}	
+	
+	
+	/*############## VENDOR CONTROLLERS BELOW ##############*/
+	
+	
+	//VENDOR - InventoryList 
+	@RequestMapping(path="GetInventoryList.do", 
+			method=RequestMethod.GET)
+	public ModelAndView getInventoryList() {
+//		System.out.println("in getgamelist.do");	//DEBUG
+		ModelAndView mv = new ModelAndView();
+		System.out.println("###############"+idao.listOfGames());
+		mv.addObject("invlist", idao.listOfGames());
+		mv.setViewName("vendordashboard");
+		return mv;
+	}
+
+	//VENDOR - Buy Game From Developer
+	@RequestMapping(path="GetNewGame.do",
+			method=RequestMethod.GET)
+	public ModelAndView getGameFromDev() {
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	
+	
+	
+	/*############## CUSTOMER CONTROLLERS BELOW ##############*/
+	
+	//CUSTOMER
+		@RequestMapping(value="GetGameByKeyword.do")
+		public ModelAndView getGameInfoByKeyword(Game game) {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("customerdashboard");
+			List<Game> gamesdata = cdao.getGameByKeyWord(game);
+			mv.addObject("game", gamesdata);
+			return mv;
+		}
+
+	
+	@RequestMapping(value="BuyGame.do",
+			method = RequestMethod.POST)
+	public ModelAndView removeOneGameFromDatabase(@RequestParam("id") Inventory inventory) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("customerdashboard");
+//		idao.markGameAsSold(inventory);
+//		mv.addObject("response", response); // need function in method
+		return mv;
+	}
+	
 	
 	
 //	// no method yet for removing entire game from DB - extended goal
