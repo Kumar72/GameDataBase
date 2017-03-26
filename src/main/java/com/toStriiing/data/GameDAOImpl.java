@@ -24,7 +24,7 @@ public class GameDAOImpl implements GameDAO {
 													// Class
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.err.println("Error loading MySQL Driver!!!");
+	 		System.err.println("Error loading MySQL Driver!!!");
 		}
 	}
 	
