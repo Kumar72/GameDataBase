@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.toStriiing.data.CustomerDAO;
@@ -15,16 +16,14 @@ import com.toStriiing.data.GameDAOImpl;
 import com.toStriiing.data.Inventory;
 import com.toStriiing.data.InventoryDAO;
 import com.toStriiing.data.InventoryDaoImpl;
+
 @Controller
+@SessionAttributes("currentGame")
 public class GameController {
 	private GameDAO gdao = new GameDAOImpl();
 	private CustomerDAO cdao = new InventoryDaoImpl();
 	private InventoryDAO idao = new InventoryDaoImpl();
 	
-	@RequestMapping(value="home.do")
-	public String home() {
-		return "home";
-	}
 	
 	@RequestMapping(path="GetGameList.do", 
 			method=RequestMethod.GET)
@@ -61,6 +60,7 @@ public class GameController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("developerdashboard");
 		gdao.editExistingGame(id);
+		mv.addObject("gamelist", gdao.listOfGames());
 		return mv;
 	}
 	
