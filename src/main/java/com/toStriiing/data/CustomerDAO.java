@@ -7,5 +7,6 @@ public interface CustomerDAO {
 	public List<Game> getGameByKeyWord(Game game);
 	//viewListOfGames   	 GameDAO 
 	//Purchase				 InventorDAO - sellGame method
+	public void buyOneGame(int id);
 	
 }
