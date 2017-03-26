@@ -49,7 +49,7 @@ public class HomeController {
 //		System.out.println("***************************************************************");
 		ModelAndView mv = new ModelAndView();
 		List<Game> games = gamedao.listOfGames();
-		System.out.println(games);
+//		System.out.println(games);
 		mv.addObject("gamelist", games);
 		mv.setViewName("developerdashboard");
 		return mv;
