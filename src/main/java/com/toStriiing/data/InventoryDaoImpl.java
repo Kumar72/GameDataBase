@@ -195,9 +195,6 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				// Game g = new Game(rs.getInt(1), rs.getString(2),
-				// rs.getString(3), rs.getString(4), rs.getDouble(5),
-				// rs.getString(6));
 				Inventory i = new Inventory();
 				i.setId(rs.getInt(1));	//inventory id.
 				if (rs.getInt(2) != 0) { 	//game
@@ -225,10 +222,10 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 	}
 
 	public int totalNumberOfGamesInInventory(int gameid) {
-		String sql = "SELECT COUNT(i.game_id) " + 
-				"FROM game g JOIN inventory i ON g.id = i.game_id "
-				+ "Where g.game_id = ?";
 		int count= 0; 
+		String sql = "SELECT COUNT(*) " + 
+				"FROM Inventory "
+				+ "Where game_id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -236,6 +233,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
 				count = rs.getInt(1);
+				System.out.println(count);
 			}
 			rs.close();
 			stmt.close();
@@ -243,6 +241,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 		} catch (Exception e) {
 			System.err.println(e);
 		}
+		System.out.println();
 		return count;
 	}
 

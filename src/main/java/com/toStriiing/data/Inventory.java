@@ -29,7 +29,7 @@ public class Inventory {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Game getGameId() {
+	public Game getGame() {
 		return game;
 	}
 	public void setGame(Game game) {
