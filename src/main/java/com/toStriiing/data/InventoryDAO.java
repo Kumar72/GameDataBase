@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface InventoryDAO {
 	public void sellGame(Game game);
-	public void updateByInventoryId(Inventory inventory);
+	public void markGameAsSold(Inventory inventory);
 	public void sellGameFromInventory(int id);
 	public List<Game> listOfGames ();
 	public void removeAllGameFromInventory(int id);
