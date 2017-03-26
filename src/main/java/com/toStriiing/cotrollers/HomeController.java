@@ -25,19 +25,21 @@ public class HomeController {
 	public ModelAndView customerPage() {
 		System.out.println("***************************************************************");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("customerdashboard");
 		List<Game> games = gamedao.listOfGames();
 		System.out.println(games);
 		mv.addObject("gamelist", games);
+		mv.setViewName("customerdashboard");
 		return mv;
 	}
 	
 	@RequestMapping(value="vendor.do", method=RequestMethod.GET)
 	public ModelAndView vendorPage() {
 		System.out.println("***************************************************************");
+		List<Game> games = gamedao.listOfGames();
+		System.out.println(games);
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("gamelist", games);
 		mv.setViewName("vendordashboard");
-		
 		return mv;
 	}
 	
@@ -45,8 +47,10 @@ public class HomeController {
 	public ModelAndView developerPage() {
 		System.out.println("***************************************************************");
 		ModelAndView mv = new ModelAndView();
+		List<Game> games = gamedao.listOfGames();
+		System.out.println(games);
+		mv.addObject("gamelist", games);
 		mv.setViewName("developerdashboard");
-		
 		return mv;
 	}
 	
