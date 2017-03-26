@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<form action="getGame.do" method="GET">
+	<form action="GetInventoryList.do" method="GET">
 		<input type="text" name="name"> <input type=submit
 			value="Get Game Information By Keyword">
 	</form>
@@ -19,15 +19,16 @@
 		<br>
 	</c:if>
 	<hr>
-	<c:forEach items="${gamelist}" var="game">
+	<c:forEach items="${invlist}" var="inventory">
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<div class="col-sm-4" id="beerinfo">
-							<strong>Title:</strong> ${game.name}<br> 
-							<strong>Description:</strong> ${game.description}<br> 
-							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP:</strong>${game.msrp}%<br> <br>
-							<strong>Rating:</strong>${game.rating}%<br>
+					<div class="col-sm-4" id="gameinfo">
+							<strong>Title:</strong> ${inventory.id}<br> 
+							<strong>Description:</strong> ${inventory.game}<br> 
+							<strong>Genre:</strong> ${inventory.vendorId}<br> 
+							<strong>MSRP:</strong>${inventory.price}<br> <br>
+							<strong>Rating:</strong>${inventory.sold}<br>
+							<strong>Quantity:</strong>${inventory.quantity}<br>
 							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
 					</div>
 					<div class="col-sm-2 text-center">
