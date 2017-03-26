@@ -10,6 +10,7 @@ public interface InventoryDAO {
 	public void removeAllGameFromInventory(int id);
 	public List<Inventory> listOfGames();
 	public void buyOneGame(int id);
+	public void changePrice(Inventory inventory);
 	
 	
 }
