@@ -26,7 +26,7 @@
 							<strong>Name:</strong> ${inventory.game.name}<br> 
 							<strong>Description:</strong> ${inventory.game.description}<br> 
 							<strong>Genre:</strong> ${inventory.game.genre}<br> 
-							<strong>MSRP:</strong> ${inventory.price}<br> 
+							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
 							<strong>Rating:</strong> ${inventory.game.rating}<br> 
 							<strong>Vendor Name:</strong> ${inventory.vendorId}<br> 
 							<strong>Status:</strong>${inventory.sold}<br>
@@ -46,7 +46,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Change Price:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="msrp" value="${game.msrp}">
+									<input type="text" class="form-control" name="msrp" value="${inven.msrp}">
 								</div>
 						</div>
 						<div class="form-group">
