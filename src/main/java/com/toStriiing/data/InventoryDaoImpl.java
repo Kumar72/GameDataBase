@@ -30,7 +30,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
             e.printStackTrace();
         }
     }
-	
+	//HI 
 	@Override
     public void buyOneGame(int id) {
         sellGameFromInventory(id);
