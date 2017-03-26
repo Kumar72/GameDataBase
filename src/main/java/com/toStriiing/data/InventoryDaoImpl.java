@@ -16,49 +16,49 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 	// !!!! - InventoryDAO (1/5)
 	@Override
 	public void sellGame(Game game) {
-//		List<Inventory> specificGameList = new ArrayList<>();
-//		String sql = "SELECT i.id FROM inventory i " + 
-//				"JOIN game g ON i.game_id = g.id " + 
-//				"WHERE g.id = ?";
-//		try {
-//			Connection conn = DriverManager.getConnection(url, user, pass);
-//			PreparedStatement stmt = conn.prepareStatement(sql);
-//			stmt.setInt(1, game.getId());
-//			ResultSet rs = stmt.executeQuery();
-//
-//			Inventory invt = new Inventory();
-//
-//			while (rs.next()) {
-//				invt.setId(rs.getInt(1));
-////				 rs.getInt is either 1 or 0
-////				 make a list of all the games with the same name!
-//				 if(invt.getSold() == 1) {
-//				 specificGameList.add(invt);
-//				 }
-//				 else {
-//				 continue;
-//				 }
-//			}
-//			// check to see if any of the games are sold
-//			for (Inventory inventory : specificGameList) {
-//				// sold : true = SOLD false = AVAILABLE
-//				if (inventory.getSold()) {
-//					continue;
-//				} else {
-//					// Update DATABASE
-//					markGameAsSold(inventory);
-//					// UPDATING INFO FOR CLIENT
-//					inventory.setSold(true);
-//					break;
-//				}
-//			}
-//
-//			rs.close();
-//			stmt.close();
-//			conn.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+		// List<Inventory> specificGameList = new ArrayList<>();
+		// String sql = "SELECT i.id FROM inventory i " +
+		// "JOIN game g ON i.game_id = g.id " +
+		// "WHERE g.id = ?";
+		// try {
+		// Connection conn = DriverManager.getConnection(url, user, pass);
+		// PreparedStatement stmt = conn.prepareStatement(sql);
+		// stmt.setInt(1, game.getId());
+		// ResultSet rs = stmt.executeQuery();
+		//
+		// Inventory invt = new Inventory();
+		//
+		// while (rs.next()) {
+		// invt.setId(rs.getInt(1));
+		//// rs.getInt is either 1 or 0
+		//// make a list of all the games with the same name!
+		// if(invt.getSold() == 1) {
+		// specificGameList.add(invt);
+		// }
+		// else {
+		// continue;
+		// }
+		// }
+		// // check to see if any of the games are sold
+		// for (Inventory inventory : specificGameList) {
+		// // sold : true = SOLD false = AVAILABLE
+		// if (inventory.getSold()) {
+		// continue;
+		// } else {
+		// // Update DATABASE
+		// markGameAsSold(inventory);
+		// // UPDATING INFO FOR CLIENT
+		// inventory.setSold(true);
+		// break;
+		// }
+		// }
+		//
+		// rs.close();
+		// stmt.close();
+		// conn.close();
+		// } catch (SQLException e) {
+		// e.printStackTrace();
+		// }
 	}
 
 	// !!!! - InventoryDAO (2/5)
@@ -110,31 +110,28 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 		}
 	}
 
-	//DONE - InventoryDAO (4/5)
+	// DONE - InventoryDAO (4/5)
 	@Override
-	public List<Game> listOfGames() {
-		List<Game> games = new ArrayList<>();
-		String sql = "SELECT * " + "FROM game";
+	public void inventoryTotalOfGame(Inventory inventory) {
+		String sql = "SELECT COUNT(game_id) FROM inventory WHERE game_id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
+			stmt.setInt(1, inventory.getGameId());
 
-			while (rs.next()) {
-				games.add(new Game(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
-						rs.getString(6)));
+			if (rs.next()) {
+				inventory.setQuantity(rs.getInt(1));
 			}
 			rs.close();
 			stmt.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("errrrrrrrrrorororro");
 			System.err.println(e);
 		}
-		return games;
 	}
 
-	//DONE - InventoryDAOImpl(5/5)
+	// DONE - InventoryDAOImpl(5/5)
 	@Override
 	public void removeAllGameFromInventory(int id) {
 		String sql = "Delete FROM inventory WHERE game_id = ?";
@@ -150,80 +147,105 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 		}
 	}
 
-	//DONE - CustomerDAOImpl (1/1)
+	// DONE - CustomerDAOImpl (1/1)
 	public List<Game> getGameByKeyWord(Game game) {
-			List<Game> games = new ArrayList<>();
-			Game g = new Game();
-			String sql = "SELECT id, name, description, genre, msrp, rating "
-					+ "WHERE name = ? OR description = ? OR genre = ? OR msrp = ? " + "OR rating = ?";
-			try (Connection conn = DriverManager.getConnection(url, user, pass);
-					PreparedStatement stmt = conn.prepareStatement(sql);) {
+		List<Game> games = new ArrayList<>();
+		Game g = new Game();
+		String sql = "SELECT id, name, description, genre, msrp, rating "
+				+ "WHERE name = ? OR description = ? OR genre = ? OR msrp = ? " + "OR rating = ?";
+		try (Connection conn = DriverManager.getConnection(url, user, pass);
+				PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-				if (game.getName() != null) {
-					stmt.setString(1, "%" + game.getName() + "%");
-					ResultSet rs = stmt.executeQuery();
+			if (game.getName() != null) {
+				stmt.setString(1, "%" + game.getName() + "%");
+				ResultSet rs = stmt.executeQuery();
 
-					while (rs.next()) {
-						g.setId(rs.getInt(1));
-						g.setName(rs.getString(2));
-						g.setDescription(rs.getString(3));
-						g.setGenre(rs.getString(4));
-						g.setMsrp(rs.getDouble(5));
-						g.setRating(rs.getString(6));
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
 
-						games.add(g);
-					}
+					games.add(g);
+				}
 
-				} else if (game.getGenre() != null) {
-					stmt.setString(1, "%" + game.getGenre() + "%");
-					ResultSet rs = stmt.executeQuery();
+			} else if (game.getGenre() != null) {
+				stmt.setString(1, "%" + game.getGenre() + "%");
+				ResultSet rs = stmt.executeQuery();
 
-					while (rs.next()) {
-						g.setId(rs.getInt(1));
-						g.setName(rs.getString(2));
-						g.setDescription(rs.getString(3));
-						g.setGenre(rs.getString(4));
-						g.setMsrp(rs.getDouble(5));
-						g.setRating(rs.getString(6));
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
 
-						games.add(g);
-					}
+					games.add(g);
+				}
 
-				} else if (game.getMsrp() != 0) {
-					stmt.setString(1, "%" + game.getMsrp() + "%");
-					ResultSet rs = stmt.executeQuery();
+			} else if (game.getMsrp() != 0) {
+				stmt.setString(1, "%" + game.getMsrp() + "%");
+				ResultSet rs = stmt.executeQuery();
 
-					while (rs.next()) {
-						g.setId(rs.getInt(1));
-						g.setName(rs.getString(2));
-						g.setDescription(rs.getString(3));
-						g.setGenre(rs.getString(4));
-						g.setMsrp(rs.getDouble(5));
-						g.setRating(rs.getString(6));
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
 
-						games.add(g);
-					}
+					games.add(g);
+				}
 
-				} else if (game.getRating() != null) {
-					stmt.setString(1, "%" + game.getRating() + "%");
-					ResultSet rs = stmt.executeQuery();
+			} else if (game.getRating() != null) {
+				stmt.setString(1, "%" + game.getRating() + "%");
+				ResultSet rs = stmt.executeQuery();
 
-					while (rs.next()) {
-						g.setId(rs.getInt(1));
-						g.setName(rs.getString(2));
-						g.setDescription(rs.getString(3));
-						g.setGenre(rs.getString(4));
-						g.setMsrp(rs.getDouble(5));
-						g.setRating(rs.getString(6));
+				while (rs.next()) {
+					g.setId(rs.getInt(1));
+					g.setName(rs.getString(2));
+					g.setDescription(rs.getString(3));
+					g.setGenre(rs.getString(4));
+					g.setMsrp(rs.getDouble(5));
+					g.setRating(rs.getString(6));
 
-						games.add(g);
-					}
-				} // add else if (game.getDesc()) {}
+					games.add(g);
+				}
+			} // add else if (game.getDesc()) {}
 
-			} catch (Exception e) {
-				System.err.println(e);
+		} catch (Exception e) {
+			System.err.println(e);
 
-			}
-			return games;
 		}
+		return games;
+	}
+
+	@Override
+	public List<Inventory> listOfGames() {
+		List<Inventory> count = new ArrayList<>();
+		String sql = "SELECT g.id, g.name, g.description, g.genre, g.msrp, g.rating, COUNT(i.game_id) "
+				+ "FROM game g JOIN inventory i ON g.id = i.game_id "
+				+ "GROUP BY i.game_id";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			Inventory i = null;
+			while (rs.next()) {
+				count.add(new Inventory (new Game(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5),
+						rs.getString(6)), rs.getInt(7)));
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		return count;
+	}
+
 }

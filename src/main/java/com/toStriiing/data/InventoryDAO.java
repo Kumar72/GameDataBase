@@ -6,8 +6,9 @@ public interface InventoryDAO {
 	public void sellGame(Game game);
 	public void markGameAsSold(Inventory inventory);
 	public void sellGameFromInventory(int id);
-	public List<Game> listOfGames ();
+	public void inventoryTotalOfGame (Inventory inventory);
 	public void removeAllGameFromInventory(int id);
+	public List<Inventory> listOfGames();
 	
 	
 }
