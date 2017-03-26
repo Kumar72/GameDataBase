@@ -32,7 +32,7 @@
 				<h2>Game List</h2>
 			</div>
 			<div class="col-sm-1 text-center vertical-align">
-				<form action="addgame.jsp" method="POST">
+				<form action="addform.do" method="POST">
 					<button type="submit" class="btn btn-default">Add a Game</button>
 				</form>
 			</div>
