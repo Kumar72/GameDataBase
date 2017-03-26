@@ -244,5 +244,25 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 		System.out.println();
 		return count;
 	}
+	
+	@Override
+	public void changePrice(Inventory inventory) {
+//		System.out.println("###############################" + game);
+//		System.out.println(game);
+		String sql = "UPDATE inventory "
+				+ "SET price = ? "
+				+ "WHERE id = ?";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setDouble(1, inventory.getPrice());
+
+			stmt.executeUpdate();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

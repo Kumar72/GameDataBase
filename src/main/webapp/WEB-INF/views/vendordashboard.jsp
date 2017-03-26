@@ -26,11 +26,16 @@
 							<strong>Name:</strong> ${inventory.game.name}<br> 
 							<strong>Description:</strong> ${inventory.game.description}<br> 
 							<strong>Genre:</strong> ${inventory.game.genre}<br> 
+<<<<<<< HEAD
 							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
+=======
+>>>>>>> babaa7f4a9bfcdfa479b8a9a64b1f00a01cb381e
 							<strong>Rating:</strong> ${inventory.game.rating}<br> 
 							<strong>Vendor Name:</strong> ${inventory.vendorId}<br> 
 							<strong>Status:</strong>${inventory.sold}<br>
 							<strong>Quantity:</strong>${inventory.quantity}<br>
+							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
+							<strong>Vendor price:</strong> ${inventory.price}<br> 
 					</div>
 					<div class="col-sm-2 text-center">
 					<!-- placeholder for game photo -->
