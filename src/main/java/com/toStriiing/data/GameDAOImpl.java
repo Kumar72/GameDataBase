@@ -54,11 +54,6 @@ public class GameDAOImpl implements GameDAO {
 		}
 	return games;
 	}
-	public static void main(String[] args) {
-		GameDAOImpl gI = new GameDAOImpl();
-		System.out.println("************************************");
-		System.out.println(gI.listOfGames());
-	}
 
 	//DONE - GameDAO (2/4) DEV
 	@Override

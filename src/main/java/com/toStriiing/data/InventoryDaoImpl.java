@@ -13,7 +13,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 	private String user = "developer";
 	private String pass = "developer";
 
-	// !!!! - InventoryDAO (1/3)
+	// !!!! - InventoryDAO (1/4)
 	@Override 
 	public void sellGame(Game game) {
 		List<Inventory> specificGameList = new ArrayList<>();
@@ -186,5 +186,29 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 
 		}
 		return games;
+	}
+
+	@Override
+	public List<Game> listOfGames() {
+		List<Game> games = new ArrayList<>();
+		String sql ="SELECT * "
+				+ "FROM game";
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				games.add(new Game(rs.getInt(1),rs.getString(2),rs.getString(3),
+						rs.getString(4),rs.getDouble(5),rs.getString(6)));	
+			}
+		rs.close();
+		stmt.close();
+		conn.close();
+		}catch(Exception e) {
+			System.out.println("errrrrrrrrrorororro");
+			System.err.println(e);
+		}
+	return games;
 	}
 }
