@@ -48,11 +48,11 @@ public class GameController {
 			method = RequestMethod.POST)
 	public ModelAndView addNewGame(Game game) {
 		ModelAndView mv = new ModelAndView();
-		List<Game> games = gdao.listOfGames();
-		mv.setViewName("developerdashboard");
+//		List<Game> games = gdao.listOfGames();
 		//having problems here to view the list! 
 		gdao.addNewGameToDataBase(game);
-		mv.addObject("gamelist", games);
+		mv.addObject("gamelist", gdao.listOfGames());
+		mv.setViewName("developerdashboard");
 		return mv;
 	}
 	
