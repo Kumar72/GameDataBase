@@ -110,7 +110,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 		}
 	}
 
-	// DONE - InventoryDAO (4/5)
+	//DONE - InventoryDAO (4/5)
 	@Override
 	public List<Game> listOfGames() {
 		List<Game> games = new ArrayList<>();

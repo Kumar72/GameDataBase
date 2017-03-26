@@ -54,31 +54,6 @@ public class GameDAOImpl implements GameDAO {
 		}
 	return games;
 	}
-	
-	@Override
-	public Game getGameById(int id ) {
-		String sql ="SELECT * "
-				+ "FROM game Where id= ?";
-		Game g = null;
-		try {
-			Connection conn = DriverManager.getConnection(url, user, pass);
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery();
-			while(rs.next()) {
-			
-			g = new Game(rs.getInt(1),rs.getString(2),rs.getString(3),
-						rs.getString(4),rs.getDouble(5),rs.getString(6));	
-			}
-			rs.close();
-			stmt.close();
-			conn.close();
-		}catch(Exception e) {
-			System.out.println("errrrrrrrrrorororro");
-			System.err.println(e);
-		}
-		return g;
-	}
 
 	//DONE - GameDAO (2/4) DEV
 	@Override
@@ -106,8 +81,8 @@ public class GameDAOImpl implements GameDAO {
 	//DONE - GameDAO (3/4) DEV
 	@Override
 	public void editExistingGame(Game game) {
-		System.out.println("###############################" + game);
-		System.out.println(game);
+//		System.out.println("###############################" + game);
+//		System.out.println(game);
 		String sql = "UPDATE game "
 				+ "SET name = ?, description = ?, genre = ?, "
 				+ "msrp = ?, rating = ? "
@@ -122,10 +97,7 @@ public class GameDAOImpl implements GameDAO {
 			stmt.setString(5, game.getRating());
 			stmt.setInt(6, game.getId());
 
-			
-			System.out.println(stmt);
 			stmt.executeUpdate();
-			System.out.println(stmt);
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
@@ -153,5 +125,29 @@ public class GameDAOImpl implements GameDAO {
 		
 	}
 
+	@Override
+	public Game getGameById(int id ) {
+		String sql ="SELECT * "
+				+ "FROM game Where id= ?";
+		Game g = null;
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+			
+			g = new Game(rs.getInt(1),rs.getString(2),rs.getString(3),
+						rs.getString(4),rs.getDouble(5),rs.getString(6));	
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		}catch(Exception e) {
+			System.out.println("errrrrrrrrrorororro");
+			System.err.println(e);
+		}
+		return g;
+	}
 
 }
