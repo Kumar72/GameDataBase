@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.toStriiing.data.Game;
 import com.toStriiing.data.GameDAO;
 import com.toStriiing.data.GameDAOImpl;
+import com.toStriiing.data.Inventory;
+import com.toStriiing.data.InventoryDAO;
+import com.toStriiing.data.InventoryDaoImpl;
 
 /**
  * Handles requests for the application home page.
@@ -19,12 +22,13 @@ import com.toStriiing.data.GameDAOImpl;
 public class HomeController {
 	
 	private GameDAO gamedao = new GameDAOImpl();
+	private InventoryDAO idao = new InventoryDaoImpl();
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value="customer.do", method=RequestMethod.GET)
 	public ModelAndView customerPage() {
-//		System.out.println("***************************************************************");
+		System.out.println("***************************************************************");
 		ModelAndView mv = new ModelAndView();
 		List<Game> games = gamedao.listOfGames();
 		System.out.println(games);
@@ -35,11 +39,11 @@ public class HomeController {
 	
 	@RequestMapping(value="vendor.do", method=RequestMethod.GET)
 	public ModelAndView vendorPage() {
-//		System.out.println("***************************************************************");
-		List<Game> games = gamedao.listOfGames();
-		System.out.println(games);
+		System.out.println("***************************************************************");
+		List<Inventory> inv = idao.listOfGames();
+		System.out.println(inv);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("gamelist", games);
+		mv.addObject("gamelist", inv);
 		mv.setViewName("vendordashboard");
 		return mv;
 	}
