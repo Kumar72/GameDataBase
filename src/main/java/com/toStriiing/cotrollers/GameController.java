@@ -57,9 +57,9 @@ public class GameController {
 	@RequestMapping(value="EditGame.do",
 			method = RequestMethod.POST)
 	public ModelAndView editGame(@RequestParam("id")int id) {
+		gdao.editExistingGame(id);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("developerdashboard");
-		gdao.editExistingGame(id);
 		mv.addObject("gamelist", gdao.listOfGames());
 		return mv;
 	}
