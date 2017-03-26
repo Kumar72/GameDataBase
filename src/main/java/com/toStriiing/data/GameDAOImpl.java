@@ -144,7 +144,6 @@ public class GameDAOImpl implements GameDAO {
 			stmt.close();
 			conn.close();
 		}catch(Exception e) {
-			System.out.println("errrrrrrrrrorororro");
 			System.err.println(e);
 		}
 		return g;

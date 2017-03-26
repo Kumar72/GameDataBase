@@ -94,14 +94,14 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 
 	// DONE InventoryDAO (3/5)
 	@Override
-	public void sellGameFromInventory(int inventoryId) {
+	public void sellGameFromInventory(int id) {
 		// Where do we match the game to the inventoryId
 		// SQL to delete a game by inventory id
-		String sql = "UPDATE inventory SET sold=0 WHERE id = ?";
+		String sql = "UPDATE inventory SET sold = 0 WHERE id = ?";
 		try {
 			Connection conn = DriverManager.getConnection(url, user, pass);
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, inventoryId);
+			stmt.setInt(1, id);
 			stmt.executeUpdate();
 			stmt.close();
 			conn.close();
@@ -246,6 +246,11 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 			System.err.println(e);
 		}
 		return count;
+	}
+
+	@Override
+	public void buyOneGame(int id) {
+		sellGameFromInventory(id);
 	}
 
 }
