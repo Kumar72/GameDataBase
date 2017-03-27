@@ -56,7 +56,7 @@
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
 						<form action="BuyGame.do" method="POST">
-							<button type="submit" name="id" value="${inventory}"								
+							<button type="submit" name="id" value="${game.id}"								
 							class="btn btn-primary">Buy Game</button>
 						</form>
 					</div>
