@@ -93,7 +93,7 @@ public class GameController {
 		@RequestMapping(value="ChangePrice.do",
 				method = RequestMethod.POST)
 		public ModelAndView changePrice(Inventory inventory) {
-//			System.out.println(id);
+			System.out.println("!!!!!!!!!!!!!!!!!!"+inventory);
 			ModelAndView mv = new ModelAndView();
 			idao.changePrice(inventory);
 			mv.addObject("invlist", idao.listOfGames());

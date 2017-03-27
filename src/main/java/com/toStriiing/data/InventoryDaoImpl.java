@@ -241,8 +241,8 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 	
 	@Override
 	public void changePrice(Inventory inventory) {
-//		System.out.println("###############################" + game);
-//		System.out.println(game);
+		System.out.println("###############################" + inventory);
+		System.out.println(inventory);
 		String sql = "UPDATE inventory "
 				+ "SET price = ? "
 				+ "WHERE id = ?";
