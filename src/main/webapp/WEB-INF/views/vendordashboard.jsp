@@ -38,8 +38,8 @@
 							<strong>Vendor Name:</strong> ${inventory.vendorId}<br> 
 							<strong>Status:</strong>${inventory.sold}<br>
 							<strong>Quantity:</strong>${inventory.quantity}<br>
-							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
-							<strong>Vendor price:</strong> ${inventory.price}<br> 
+							<strong>MSRP:</strong> $${inventory.game.msrp}<br> 
+							<strong>Vendor price:</strong> $${inventory.price}<br> 
 					</div>
 					<div class="col-sm-2"></div>
 				</div>
@@ -47,8 +47,8 @@
 					<div class="col-sm-2"></div>
 					<div class="col-sm-8">
 						<form action="ChangePrice.do" method="POST">
+	                        <strong>Change Vendor Price:</strong>
 	                        <div class="form-group">
-	                            <label class="control-label col-sm-4">Change Vendor Price:</label>
 	                                <div class="col-sm-6">
 	                                    <input type="hidden" class="form-control" name="id"
 	                                    value="${inventory.id}">
