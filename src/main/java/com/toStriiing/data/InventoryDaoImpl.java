@@ -42,6 +42,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 			while(rs.next()) {
 				if(rs.getInt(5)==1){
 					inventoryId = rs.getInt(1);
+					break;
 				}
 			}
 			rs.close();
@@ -52,6 +53,7 @@ public class InventoryDaoImpl implements InventoryDAO, CustomerDAO {
 			System.out.println("errrrrrrrrrorororro");
 			System.err.println(e);
 		}
+		System.out.println("inventory id: " + inventoryId);
 		
 		if(inventoryId!=0){
 			String sql3 ="update inventory set sold = 0 "

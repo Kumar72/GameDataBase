@@ -127,8 +127,9 @@ public class GameController {
 	
 	@RequestMapping(value="BuyGame.do",
 			method = RequestMethod.POST)
-	public ModelAndView removeOneGameFromDatabase(@RequestParam("id") Inventory inventory) {
+	public ModelAndView removeOneGameFromDatabase(@RequestParam("id") int id) {
 		ModelAndView mv = new ModelAndView();
+		idao.buyOneGame(id);
 		mv.setViewName("customerdashboard");
 //		idao.markGameAsSold(inventory);
 //		mv.addObject("response", response); // need function in method
