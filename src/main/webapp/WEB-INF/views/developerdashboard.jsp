@@ -15,12 +15,12 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="e">
+<link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
 			
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row developerlist">
 			<div class="col-sm-3"></div>
 
 			<div class="col-sm-1 text-center vertical-align">

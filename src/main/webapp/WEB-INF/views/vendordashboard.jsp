@@ -3,27 +3,33 @@
 <html>
 <head>
 <title>Vendor Dashboard</title>
-
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
+	<div class="container-fluid">
+		<div class="row vendorlist">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div class="text-center">
+					<h2>Vendor List of Games</h2>
+				</div>
+			</div>
+			<div class="col-sm-2"></div>
 
-	<%-- <form action="GetInventoryList.do" method="GET">
-		<input type="text" name="name"> <input type=submit
-			value="Get Game Information By Keyword">
-	</form>
-	<c:if test="${! empty game}">
-		Name: <strong>${game.name}</strong><br>
-		Description: <strong>${game.description}</strong><br>
-		Genre: <strong>${game.genre}</strong><br>
-		MSRP: <strong>${game.msrp}</strong><br>
-		Rating: <strong>${game.rating}</strong>
-		<br>
-	</c:if> --%>
-	<hr>
-	<c:forEach items="${invlist}" var="inventory">
+		</div>
+			<c:forEach items="${invlist}" var="inventory">
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<div class="col-sm-4" id="gameinfo">
+					<div class="col-sm-6" id="gameinfo">
 							<strong>Name:</strong> ${inventory.game.name}<br> 
 							<strong>Description:</strong> ${inventory.game.description}<br> 
 							<strong>Genre:</strong> ${inventory.game.genre}<br> 
@@ -35,45 +41,25 @@
 							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
 							<strong>Vendor price:</strong> ${inventory.price}<br> 
 					</div>
-					<div class="col-sm-2 text-center">
-					<!-- placeholder for game photo -->
-						<%-- <div id="beerpic">
-							<img class="resize img-responsive center-block" src="${beer.picURL}"/>
-						</div> --%>
-					</div>
 					<div class="col-sm-3"></div>
 				</div>
-				<div class="row text-center">
-					<div class="col-sm-4"></div>
-					<div class="col-sm-2">
-						<%-- <div class="form-group">
-							<label class="control-label col-sm-2">Change Price:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="msrp" value="${inven.msrp}">
-								</div>
-						</div>
-						 --%>
-						<form action="ChangePrice.do" method="POST">
-						<div class="form-group">
-							<label class="control-label col-sm-2">Change Vendor Price:</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" name="price"
-									value="${inventory.price}">
-								</div>
-							<button type="submit" value="Edit Vendor Price" class="btn btn-default">Submit Changes</button>
-						</div>
-						</form>
-				
-					</div>
-					<div class="col-sm-2">
-						<%-- <form action="DeleteBeer.do" method="POST">
-							<button type="submit" name="name" value="${beer.name}"								
-							class="btn btn-danger">Delete Beer</button>
-						</form> --%>
-					</div>
-					<div class="col-sm-4"></div>
+				<div class="row">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<form action="ChangePrice.do" method="POST">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Change Vendor Price:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="price"
+                                    value="${inventory.price}">
+                                </div>
+                            <button type="submit" value="Edit Vendor Price" class="btn btn-default">Submit Changes</button>
+                        </div>
+                    </form>
+				</div>
+				<div class="col-sm-3"></div>
 				</div>
 			</c:forEach>
-	
+	</div>
 </body>
 </html>
