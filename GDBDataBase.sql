@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `game` ;
 CREATE TABLE IF NOT EXISTS `game` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `description` VARCHAR(150) NULL,
+  `description` VARCHAR(1500) NULL,
   `genre` VARCHAR(45) NULL,
   `msrp` DOUBLE NOT NULL,
   `rating` CHAR(1) NOT NULL,

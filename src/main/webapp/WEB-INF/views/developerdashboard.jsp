@@ -20,7 +20,7 @@
 <body>
 			
 	<div class="container-fluid">
-		<div class="row developerlist">
+		<div class="row dashboardheader">
 			<div class="col-sm-3"></div>
 
 			<div class="col-sm-1 text-center vertical-align">
@@ -41,19 +41,13 @@
 			<c:forEach items="${gamelist}" var="game">
 				<div class="row">
 					<div class="col-sm-3"></div>
-					<div class="col-sm-4" id="gameinfo">
+					<div class="col-sm-6" id="gameinfo">
 							<strong>Title:</strong> ${game.name}<br> 
 							<strong>Description:</strong> ${game.description}<br> 
 							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP: </strong> ${game.msrp}<br> <br>
+							<strong>MSRP: </strong> $${game.msrp}<br>
 							<strong>Rating:</strong> ${game.rating}<br>
-							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
-					</div>
-					<div class="col-sm-2 text-center">
-						<!-- placeholder for game photo -->
-						<%-- <div id="gamepic">
-							<img class="resize img-responsive center-block" src="${game.picURL}"/>
-						</div> --%>
+							<!-- <strong>Status:</strong>placeholder for sold status<br> <br> -->
 					</div>
 					<div class="col-sm-3"></div>
 				</div>

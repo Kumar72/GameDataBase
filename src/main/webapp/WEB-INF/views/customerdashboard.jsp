@@ -15,24 +15,21 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="">
+<link rel="stylesheet" type="text/css" href="dashboard.css">
 </head>
 <body>
 
-<form action="GetGameByKeyword.do" method="GET">
-		<input type="text" name="keyword"> <input type=submit
-			value="Get Game Information By Keyword">
-	</form>
-	<c:if test="${! empty gamesdata}">
-		<c:forEach var="game" items="${gamesData}">
-			Name: <strong>${game.name}</strong><br>
-			Description: <strong>${game.description}</strong><br>
-			Genre: <strong>${game.genre}</strong><br>
-			MSRP: <strong>${game.msrp}</strong><br>
-			Rating: <strong>${game.rating}</strong>
-		</c:forEach>
-	</c:if>
-	<hr>
+	<div class="container-fluid">
+		<div class="row dashboardheader">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div class="text-center">
+					<h2>Vendor List of Games</h2>
+				</div>
+			</div>
+			<div class="col-sm-2"></div>
+
+		</div>
 	<c:forEach items="${gamelist}" var="game">
 				<div class="row">
 					<div class="col-sm-3"></div>
@@ -69,6 +66,6 @@
 					<div class="col-sm-4"></div>
 				</div>
 			</c:forEach>
-
+	</div>
 </body>
 </html>

@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row vendorlist">
+		<div class="row dashboardheader">
 			<div class="col-sm-2"></div>
 			<div class="col-sm-8">
 				<div class="text-center">
@@ -28,8 +28,8 @@
 		</div>
 			<c:forEach items="${invlist}" var="inventory">
 				<div class="row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-6" id="gameinfo">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8" id="gameinfo">
 							<strong>Name:</strong> ${inventory.game.name}<br> 
 							<strong>Description:</strong> ${inventory.game.description}<br> 
 							<strong>Genre:</strong> ${inventory.game.genre}<br> 
@@ -41,23 +41,25 @@
 							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
 							<strong>Vendor price:</strong> ${inventory.price}<br> 
 					</div>
-					<div class="col-sm-3"></div>
+					<div class="col-sm-2"></div>
 				</div>
 				<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
-					<form action="ChangePrice.do" method="POST">
-                        <div class="form-group">
-                            <label class="control-label col-sm-2">Change Vendor Price:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="price"
-                                    value="${inventory.price}">
-                                </div>
-                            <button type="submit" value="Edit Vendor Price" class="btn btn-default">Submit Changes</button>
-                        </div>
-                    </form>
-				</div>
-				<div class="col-sm-3"></div>
+					<div class="col-sm-2"></div>
+					<div class="col-sm-8">
+						<form action="ChangePrice.do" method="POST">
+	                        <div class="form-group">
+	                            <label class="control-label col-sm-4">Change Vendor Price:</label>
+	                                <div class="col-sm-6">
+	                                    <input type="hidden" class="form-control" name="id"
+	                                    value="${inventory.id}">
+	                                    <input type="text" class="form-control" name="price"
+	                                    value="${inventory.price}">
+	                                </div>
+	                            <button type="submit" value="Edit Vendor Price" class="btn btn-primary">Submit Changes</button>
+	                        </div>
+	                    </form>
+					</div>
+					<div class="col-sm-2"></div>
 				</div>
 			</c:forEach>
 	</div>

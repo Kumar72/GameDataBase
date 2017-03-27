@@ -2,8 +2,12 @@
 	margin-top: 15px;
 }
 
-.vendorlist {
+.dashboardheader {
 	background-color: black;
 	color: white;
 	margin-bottom: 20px;
+}
+
+.vertical-align {
+    margin-top:20px;
 }
