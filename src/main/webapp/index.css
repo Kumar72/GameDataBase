@@ -4,6 +4,15 @@
 height:50%;
 background-color:white;
 }
+
+.header {
+	background-color: white;
+}
+
+.center-block {
+  float:none;
+}
+
 h1{
 	
 	color:white;
@@ -18,14 +27,15 @@ h2{
 	font-size: 24px;
 	font-weight: bold;
 	color:red;
-	font-family: Comic Sans MS;
+	font-family: ;
 	margin-left: 400px;
+	text-align: center;
 }
 .a1{
 	font-size: 24px;
 	font-weight: bold;
 	color:black;
-	font-family: Comic Sans MS;
+	font-family: ;
 }
 #p2{
 	margin-left: 390px;
@@ -64,7 +74,7 @@ a {
 button{
 	
 	background-color: red;
-	font-family: Comic Sans MS; 
+	font-family: ; 
 	font-size:18px
 }
 .btn btn-space{
