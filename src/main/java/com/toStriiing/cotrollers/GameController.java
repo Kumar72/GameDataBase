@@ -90,14 +90,14 @@ public class GameController {
 	}
 	
 	//VENDOR -Update
-		@RequestMapping(value="GetInventoryList.do",
+		@RequestMapping(value="ChangePrice.do",
 				method = RequestMethod.POST)
-		public ModelAndView editInventory(Inventory inventory) {
+		public ModelAndView changePrice(Inventory inventory) {
 //			System.out.println(id);
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("vendordashboard");
 			idao.changePrice(inventory);
 			mv.addObject("invlist", idao.listOfGames());
+			mv.setViewName("vendordashboard");
 			return mv;
 		}
 
