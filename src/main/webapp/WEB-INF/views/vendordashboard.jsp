@@ -3,10 +3,11 @@
 <html>
 <head>
 <title>Vendor Dashboard</title>
+
 </head>
 <body>
 
-	<form action="GetInventoryList.do" method="GET">
+	<%-- <form action="GetInventoryList.do" method="GET">
 		<input type="text" name="name"> <input type=submit
 			value="Get Game Information By Keyword">
 	</form>
@@ -17,7 +18,7 @@
 		MSRP: <strong>${game.msrp}</strong><br>
 		Rating: <strong>${game.rating}</strong>
 		<br>
-	</c:if>
+	</c:if> --%>
 	<hr>
 	<c:forEach items="${invlist}" var="inventory">
 				<div class="row">
@@ -26,11 +27,13 @@
 							<strong>Name:</strong> ${inventory.game.name}<br> 
 							<strong>Description:</strong> ${inventory.game.description}<br> 
 							<strong>Genre:</strong> ${inventory.game.genre}<br> 
-							<strong>MSRP:</strong> ${inventory.price}<br> 
+							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
 							<strong>Rating:</strong> ${inventory.game.rating}<br> 
 							<strong>Vendor Name:</strong> ${inventory.vendorId}<br> 
 							<strong>Status:</strong>${inventory.sold}<br>
 							<strong>Quantity:</strong>${inventory.quantity}<br>
+							<strong>MSRP:</strong> ${inventory.game.msrp}<br> 
+							<strong>Vendor price:</strong> ${inventory.price}<br> 
 					</div>
 					<div class="col-sm-2 text-center">
 					<!-- placeholder for game photo -->
@@ -43,17 +46,24 @@
 				<div class="row text-center">
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label class="control-label col-sm-2">Change Price:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" name="msrp" value="${game.msrp}">
+									<input type="text" class="form-control" name="msrp" value="${inven.msrp}">
 								</div>
 						</div>
+						 --%>
+						<form action="ChangePrice.do" method="POST">
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" value="Edit Price" class="btn btn-default">Submit Change</button>
-							</div>
+							<label class="control-label col-sm-2">Change Vendor Price:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="price"
+									value="${inventory.price}">
+								</div>
+							<button type="submit" value="Edit Vendor Price" class="btn btn-default">Submit Changes</button>
 						</div>
+						</form>
+				
 					</div>
 					<div class="col-sm-2">
 						<%-- <form action="DeleteBeer.do" method="POST">
