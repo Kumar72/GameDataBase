@@ -37,9 +37,9 @@
 							<strong>Title:</strong> ${game.name}<br> 
 							<strong>Description:</strong> ${game.description}<br> 
 							<strong>Genre:</strong> ${game.genre}<br> 
-							<strong>MSRP: </strong> ${game.msrp}<br> <br>
+							<strong>MSRP: </strong> ${game.msrp}<br>
 							<strong>Rating:</strong> ${game.rating}<br>
-							<strong>Status:</strong><!-- placeholder for sold status --><br> <br>
+							
 					</div>
 					<div class="col-sm-2 text-center">
 					<!-- placeholder for game photo -->
@@ -54,7 +54,7 @@
 					<div class="col-sm-2">
 						<form action="BuyGame.do" method="POST">
 							<button type="submit" name="id" value="${game.id}"								
-							class="btn btn-primary">Buy Game ${game.id }</button>
+							class="btn btn-primary">Buy Game</button>
 						</form>
 					</div>
 					<div class="col-sm-2">
